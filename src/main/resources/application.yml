@@ -1,5 +1,29 @@
+# application.yml
+
+# Application properties
 app:
   name: @project.name@
   description: ${app.name} ${app.version} est @project.description@
   version: @project.version@
+
+# Logging properties
+logging:
+  level:
+    root: INFO   # Root logger level
+    org.springframework.web: ERROR
+    com.pop.codelab.chatopbackend: DEBUG
+    org.hibernate: ERROR
+  file:
+    name: logs/${app.name}.log  # Log file name and location
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"  # Console log pattern
+    file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"     # File log pattern
+  #config: classpath:logback-spring.xml  # Optional: path to an external Logback configuration file
+
+
+#If the terminal supports ANSI, the color output will be used to aid readability
+spring:
+  output:
+  ansi:
+    enabled: DETECT #ALWAYS, NEVER or DETECT.
 
