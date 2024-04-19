@@ -1,4 +1,4 @@
-package security;
+package com.pop.codelab.chatopbackend.security;
 
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import org.springframework.context.annotation.Bean;
@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,11 +17,15 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * Represents the configuration for the Spring Security framework.
+ * The class is used to configure the filter chain, user details service,
+ * JWT encoder and decoder, and password encoder.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration  {
@@ -78,6 +81,7 @@ public class SecurityConfiguration  {
      */
     @Bean
     public JwtEncoder jwtEncoder() {
+
         return new NimbusJwtEncoder(new ImmutableSecret<>(this.jwtKey.getBytes()));
     }
 
