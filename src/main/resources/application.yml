@@ -1,0 +1,5 @@
+app:
+  name: @project.name@
+  description: ${app.name} ${app.version} est @project.description@
+  version: @project.version@
+
