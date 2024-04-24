@@ -1,17 +1,9 @@
 package com.pop.codelab.chatopbackend;
 
-import com.pop.codelab.chatopbackend.auth.AuthenticationService;
-import com.pop.codelab.chatopbackend.auth.RegisterRequest;
-import com.pop.codelab.chatopbackend.controllers.ResourceController;
-import com.pop.codelab.chatopbackend.message.service.MessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import static com.pop.codelab.chatopbackend.user.Role.*;
 
 /**
  * The ChatopBackendApplication class is the entry point for the Châtop
@@ -23,7 +15,25 @@ import static com.pop.codelab.chatopbackend.user.Role.*;
  */
 @SpringBootApplication()
 public class ChatopBackendApplication  {
-
+	/**
+	 * The logger variable is used for logging messages and events in the ChatopBackendApplication class.
+	 * It is an instance of the Logger class from the SLF4J (Simple Logging Facade for Java) framework.
+	 * Logging is an essential part of any application as it helps in debugging, monitoring, and troubleshooting.
+	 *
+	 * The logger is declared as private static final, which means it is a constant and can only be accessed within the ChatopBackendApplication class.
+	 * It is recommended to use a constant logger instance for performance reasons.
+	 *
+	 * The LoggerFactory.getLogger() method is used to obtain a logger instance for the specified class (ChatopBackendApplication.class).
+	 * This method is provided by the SLF4J framework and returns a logger implementation based on the underlying logging framework being used (e.g., Logback, Log4j).
+	 *
+	 * Example usage:
+	 *     logger.info("Application is starting...");
+	 *     logger.debug("This is a debug message.");
+	 *     logger.error("An error occurred during the execution.");
+	 *
+	 * @see LoggerFactory
+	 * @see Logger
+	 */
 	private static final Logger logger = LoggerFactory.getLogger(ChatopBackendApplication.class);
 
 	/**
@@ -37,7 +47,4 @@ public class ChatopBackendApplication  {
 		logger.info("Application is starting...");
 		SpringApplication.run(ChatopBackendApplication.class, args);
 	}
-
-
-
 }

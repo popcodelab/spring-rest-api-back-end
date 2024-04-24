@@ -2,7 +2,9 @@ package com.pop.codelab.chatopbackend.configuration;
 
 import com.pop.codelab.chatopbackend.auth.AuthenticationService;
 import com.pop.codelab.chatopbackend.auth.RegisterRequest;
-import com.pop.codelab.chatopbackend.message.service.MessageService;
+import com.pop.codelab.chatopbackend.message.MessageDto;
+import com.pop.codelab.chatopbackend.message.MessageService;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +20,7 @@ public class LoadDatabase {
 
     /**
      * Performs setup actions.
-     *
+     * <p>
      * Once the Spring application context is fully loaded and before it starts running methods to initialize data
      * are called
      *
@@ -42,7 +44,7 @@ public class LoadDatabase {
      *
      * @param authenticationService the AuthenticationService instance used for user registration
      */
-    private void createUsers(AuthenticationService authenticationService){
+    private void createUsers(AuthenticationService authenticationService) {
         logger.info("Creating users...");
         var admin = RegisterRequest.builder()
                 .name("Admin")
@@ -74,8 +76,15 @@ public class LoadDatabase {
         logger.info("Users created.");
     }
 
-    private void createMessages(MessageService messageService){
+    private void createMessages(MessageService messageService) {
         logger.info("Creating messages...");
+        MessageDto messageDto = MessageDto.builder()
+                .message("This is a first message")
+                .build();
+        var message = messageService.save(messageDto);
+        logger.debug("Message added : {}", message);
+//
+
 //		var admin = RegisterRequest.builder()
 //				.name("Admin")
 //				.email("admin@mail.com")
