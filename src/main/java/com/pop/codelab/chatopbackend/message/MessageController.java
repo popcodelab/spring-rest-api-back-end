@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/messages")
 public class MessageController extends CrudController<MessageDto> {
     public MessageController(MessageService messageService) {
+
         super(messageService);
     }
+
 
 }

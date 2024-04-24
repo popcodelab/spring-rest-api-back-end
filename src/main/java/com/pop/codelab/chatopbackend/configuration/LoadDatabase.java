@@ -1,22 +1,34 @@
 package com.pop.codelab.chatopbackend.configuration;
 
 import com.pop.codelab.chatopbackend.auth.AuthenticationService;
-import com.pop.codelab.chatopbackend.auth.RegisterRequest;
 import com.pop.codelab.chatopbackend.message.MessageDto;
 import com.pop.codelab.chatopbackend.message.MessageService;
-import lombok.AllArgsConstructor;
+import com.pop.codelab.chatopbackend.user.UserCreationDto;
+import com.pop.codelab.chatopbackend.user.UserDto;
+import com.pop.codelab.chatopbackend.user.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import static com.pop.codelab.chatopbackend.user.Role.*;
 
+
 @Configuration
 public class LoadDatabase {
 
     private static final Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
+
+    @Autowired
+    private UserRepository userRepository;
+
+    private UserCreationDto userCreationDto;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     /**
      * Performs setup actions.
@@ -46,17 +58,16 @@ public class LoadDatabase {
      */
     private void createUsers(AuthenticationService authenticationService) {
         logger.info("Creating users...");
-        var admin = RegisterRequest.builder()
+        UserCreationDto adminDto = UserCreationDto.builder()
                 .name("Admin")
                 .email("admin@mail.com")
                 .password("password")
                 .role(ADMIN)
                 .build();
+        String token = authenticationService.register(adminDto).getAccessToken();
+        logger.debug("Created user {} - token : {}", adminDto.getName(), token);
 
-        String token = authenticationService.register(admin).getAccessToken();
-        logger.debug("Created user {} - token : {}", admin.getName(), token);
-
-        var manager = RegisterRequest.builder()
+        UserCreationDto manager = UserCreationDto.builder()
                 .name("Manager")
                 .email("manager@mail.com")
                 .password("password")
@@ -65,35 +76,37 @@ public class LoadDatabase {
         token = authenticationService.register(manager).getAccessToken();
         logger.debug("Created user {} - token : {}", manager.getName(), token);
 
-        var user = RegisterRequest.builder()
+        userCreationDto = UserCreationDto.builder()
                 .name("User")
                 .email("user@mail.com")
                 .password("password")
                 .role(USER)
                 .build();
-        token = authenticationService.register(user).getAccessToken();
-        logger.debug("Created user {} - token : {}", user.getName(), token);
+        token = authenticationService.register(userCreationDto).getAccessToken();
+        logger.debug("Created user {} - token : {}", userCreationDto.getName(), token);
         logger.info("Users created.");
+
     }
 
     private void createMessages(MessageService messageService) {
         logger.info("Creating messages...");
+
+        var user = userRepository.findByEmail("admin@mail.com").orElseThrow();
+
         MessageDto messageDto = MessageDto.builder()
-                .message("This is a first message")
+                .message("This is a first message from admin")
+                .user(modelMapper.map(user, UserDto.class))
                 .build();
         var message = messageService.save(messageDto);
         logger.debug("Message added : {}", message);
-//
 
-//		var admin = RegisterRequest.builder()
-//				.name("Admin")
-//				.email("admin@mail.com")
-//				.password("password")
-//				.role(ADMIN)
-//				.build();
-//
-//
-//		logger.debug("Created message {} - token : {}", admin.getName(), token);
+        messageDto = MessageDto.builder()
+                .message("This is a second message from admin")
+                .user(modelMapper.map(user, UserDto.class))
+                .build();
+        message = messageService.save(messageDto);
+        logger.debug("Message added : {}", message);
+
         logger.info("Messages created.");
     }
 

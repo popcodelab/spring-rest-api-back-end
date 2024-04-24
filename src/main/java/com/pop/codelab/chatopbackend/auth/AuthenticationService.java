@@ -1,31 +1,45 @@
 package com.pop.codelab.chatopbackend.auth;
 
 import com.pop.codelab.chatopbackend.security.jwt.JwtService;
-import com.pop.codelab.chatopbackend.user.Role;
-import com.pop.codelab.chatopbackend.user.User;
-import com.pop.codelab.chatopbackend.user.UserRepository;
+import com.pop.codelab.chatopbackend.user.*;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+//import static com.pop.codelab.chatopbackend.user.UserMapper.INSTANCE;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-  private final UserRepository repository;
+  private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
-  public AuthenticationResponse register(RegisterRequest request) {
-    var user = User.builder()
-            .name(request.getName())
-        .email(request.getEmail())
-        .password(passwordEncoder.encode(request.getPassword()))
-        .role((request.getRole()==null? Role.USER:request.getRole()))
-        .build();
-    repository.save(user);
+  @Autowired
+  private ModelMapper modelMapper;
+
+  private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
+
+  public AuthenticationResponse register(UserCreationDto userCreationDto) {
+    logger.debug("Register user : {}", userCreationDto);
+//    var user = User.builder()
+//            .name(userCreationDto.getName())
+//        .email(userCreationDto.getEmail())
+//        .password(passwordEncoder.encode(userCreationDto.getPassword()))
+//        .role((userCreationDto.getRole()==null? Role.USER:userCreationDto.getRole()))
+//        .build();
+    //User user = INSTANCE.dtoToUser(userCreationDto);
+
+    User user  = modelMapper.map(userCreationDto, User.class);
+    user.setPassword(passwordEncoder.encode(userCreationDto.getPassword()));
+    userRepository.save(user);
     var jwtToken = jwtService.generateToken(user);
     return AuthenticationResponse.builder()
         .accessToken(jwtToken)
@@ -39,7 +53,7 @@ public class AuthenticationService {
             request.getPassword()
         )
     );
-    var user = repository.findByEmail(request.getEmail())
+    var user = userRepository.findByEmail(request.getEmail())
         .orElseThrow();
     var jwtToken = jwtService.generateToken(user);
     return AuthenticationResponse.builder()

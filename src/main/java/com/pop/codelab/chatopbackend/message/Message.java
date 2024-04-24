@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -24,8 +25,11 @@ public class Message extends BaseEntity {
 
     private String message;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+//    @NotNull
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    public User user;
+    private User user;
 
 }

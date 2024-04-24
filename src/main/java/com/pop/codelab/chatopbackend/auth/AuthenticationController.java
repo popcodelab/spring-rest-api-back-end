@@ -1,5 +1,7 @@
 package com.pop.codelab.chatopbackend.auth;
 
+import com.pop.codelab.chatopbackend.user.UserCreationDto;
+import com.pop.codelab.chatopbackend.user.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,19 +12,20 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-  private final AuthenticationService service;
+  private final AuthenticationService authenticationService;
 
   @PostMapping("/register")
   public ResponseEntity<AuthenticationResponse> register(
-      @RequestBody RegisterRequest request
+          @RequestBody UserCreationDto userDto
   ) {
-    return ResponseEntity.ok(service.register(request));
+    var test = userDto;
+    return ResponseEntity.ok(authenticationService.register(userDto));
   }
   @PostMapping("/login")
   public ResponseEntity<AuthenticationResponse> login(
       @RequestBody AuthenticationRequest request
   ) {
-    return ResponseEntity.ok(service.authenticate(request));
+    return ResponseEntity.ok(authenticationService.authenticate(request));
   }
 
 

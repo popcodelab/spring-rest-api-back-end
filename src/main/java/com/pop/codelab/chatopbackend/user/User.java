@@ -2,6 +2,8 @@ package com.pop.codelab.chatopbackend.user;
 
 //import com.pop.codelab.chatopbackend.message.Message;
 //import com.pop.codelab.chatopbackend.rental.Rental;
+import com.pop.codelab.chatopbackend.entity.BaseEntity;
+import com.pop.codelab.chatopbackend.message.Message;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,18 +25,9 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
-
-  @Id
-  @Column(unique = true, nullable = false)
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer id;
+public class User extends BaseEntity implements UserDetails {
 
   private String name;
-
-//  private String firstname;
-//
-//  private String lastname;
 
   private String email;
 
@@ -42,30 +35,6 @@ public class User implements UserDetails {
 
   @Enumerated(EnumType.STRING)
   private Role role;
-
-  @CreationTimestamp
-  @Column(name= "created_at")
-  private LocalDateTime createAt;
-
-  @UpdateTimestamp
-  @Column(name= "updated_at")
-  private LocalDateTime updatedAt;
-
-//  @OneToMany(mappedBy = "user")
-//  private List<Rental> rentals;
-//
-//  @OneToMany(mappedBy = "user")
-//  private List<Message> messages;
-
-//  @OneToMany(mappedBy = "user")
-//  private List<Token> tokens;
-
-
-//  @Override
-//  public String getPassword() {
-//    return password;
-//  }
-
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -75,10 +44,6 @@ public class User implements UserDetails {
     }
     else return new ArrayList<>();
   }
-
-
-
-
 
   @Override
   public String getUsername() {

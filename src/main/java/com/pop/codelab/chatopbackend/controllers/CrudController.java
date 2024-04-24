@@ -31,6 +31,8 @@ public abstract class CrudController<T extends BaseDTO> {
     @GetMapping("/")
     public ResponseEntity<List<T>> getAll(){
         logger.info("getAll ...");
+        List<T> list = service.findAll();
+
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
