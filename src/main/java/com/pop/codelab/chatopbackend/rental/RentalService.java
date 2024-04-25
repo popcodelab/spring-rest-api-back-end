@@ -50,7 +50,7 @@ public class RentalService implements CrudService<RentalDto> {
     public RentalDto save(RentalDto rentalDto) {
         Rental rental = modelMapper.map(rentalDto, Rental.class);
         Rental savedRental = rentalRepository.save(rental);
-        logger.debug("{} has been saved.", rentalDto);
+        logger.debug("Rental : {} has been saved.", rentalDto);
         return modelMapper.map(savedRental, RentalDto.class);
     }
 

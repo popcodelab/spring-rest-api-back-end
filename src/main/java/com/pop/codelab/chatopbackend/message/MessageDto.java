@@ -1,5 +1,6 @@
 package com.pop.codelab.chatopbackend.message;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pop.codelab.chatopbackend.controllers.dto.BaseDTO;
 import com.pop.codelab.chatopbackend.user.UserDto;
 import lombok.AllArgsConstructor;
