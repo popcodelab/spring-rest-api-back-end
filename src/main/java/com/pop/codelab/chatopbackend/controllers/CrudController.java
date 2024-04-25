@@ -13,20 +13,14 @@ import java.util.Optional;
 
 public abstract class CrudController<T extends BaseDTO> {
 
-    private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
-
     private final CrudService<T> service;
 
     public CrudController(CrudService<T> crudService){
-        logger.info("Entering in CRUD Controller...");
         this.service = crudService;
     }
 
     @GetMapping("/")
     public ResponseEntity<List<T>> getAll(){
-        logger.info("getAll ...");
-        List<T> list = service.findAll();
-
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
@@ -41,7 +35,6 @@ public abstract class CrudController<T extends BaseDTO> {
 
     @PostMapping("/")
     public ResponseEntity<T> save(@RequestBody T body){
-        logger.debug("save : body = {}", body);
         return new ResponseEntity<>(service.save(body), HttpStatus.CREATED);
     }
 
@@ -58,7 +51,6 @@ public abstract class CrudController<T extends BaseDTO> {
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody T body){
         Optional<T> optional = service.findById(id);
         optional.ifPresent(n -> service.update(id, body));
-
         return optional.map(n ->
                         new ResponseEntity<>("Object with id " + id + " was updated.", HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND.getReasonPhrase(), HttpStatus.NOT_FOUND));

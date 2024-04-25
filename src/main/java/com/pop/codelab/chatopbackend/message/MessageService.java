@@ -1,5 +1,6 @@
 package com.pop.codelab.chatopbackend.message;
 
+import com.pop.codelab.chatopbackend.exception.ResourceNotFoundException;
 import com.pop.codelab.chatopbackend.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,9 @@ public class MessageService implements CrudService<MessageDto> {
     public List<MessageDto> findAll() {
         logger.info("Gathering all messages...");
         List<Message> messages = messageRepository.findAll();
+        if (messages.isEmpty()) {
+            throw new ResourceNotFoundException("No message found");
+        }
         logger.debug("Message(s) count : {}", messages.size());
         return messages.stream().map(this::convertToDto).collect(Collectors.toList());
     }
@@ -36,6 +40,9 @@ public class MessageService implements CrudService<MessageDto> {
     @Override
     public Optional<MessageDto> findById(Long id) {
         Optional<Message> messageOptional = messageRepository.findById(id);
+        if (!messageOptional.isPresent()) {
+            throw new ResourceNotFoundException("No message found with Id : "+ id);
+        }
         logger.debug("Dto retrieved : {} ", messageOptional);
         return messageOptional.map(this::convertToDto);
     }
@@ -44,7 +51,6 @@ public class MessageService implements CrudService<MessageDto> {
     public MessageDto save(MessageDto messageDto) {
         logger.debug("Save {} dto", messageDto);
         Message message = modelMapper.map(messageDto, Message.class);
-        //TODO Handle exception
         messageRepository.save(message);
         messageDto = modelMapper.map(message, MessageDto.class);
         return messageDto;
