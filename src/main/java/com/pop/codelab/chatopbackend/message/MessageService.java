@@ -50,9 +50,9 @@ public class MessageService implements CrudService<MessageDto> {
     @Override
     public MessageDto save(MessageDto messageDto) {
         Message message = modelMapper.map(messageDto, Message.class);
-        messageRepository.save(message);
-        logger.debug("Message : {} has been saved.", messageDto);
-        return messageDto;
+        Message createdMessage = messageRepository.save(message);
+        logger.debug("Message : {} has been saved.", createdMessage);
+        return   modelMapper.map(createdMessage, MessageDto.class);
     }
 
     @Override

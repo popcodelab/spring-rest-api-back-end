@@ -56,15 +56,16 @@ public class MessageControlerTest {
     @Test
     public void createMessageAPI() throws Exception
     {
+        String messageContent = "Unit test message";
         Message message = Message.builder()
-                        .message("Unit test message")
+                        .message(messageContent)
                 .build();
         mockMvc.perform( MockMvcRequestBuilders
                         .post("/api/messages/")
                         .content(JsonUtil.toJson(message))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated());
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+                .andExpect(status().isCreated())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(messageContent));
     }
 }

@@ -1,6 +1,8 @@
 package com.pop.codelab.chatopbackend.rental;
 
 import com.pop.codelab.chatopbackend.controllers.CrudController;
+import com.pop.codelab.chatopbackend.message.MessageCreationResponse;
+import com.pop.codelab.chatopbackend.message.MessageDto;
 import com.pop.codelab.chatopbackend.service.ImageService;
 import com.pop.codelab.chatopbackend.user.UserDto;
 import org.modelmapper.ModelMapper;
@@ -26,23 +28,28 @@ public class RentalController extends CrudController<RentalDto> {
     private String uploadDirectory;
 
     @Autowired
-    private RentalService rentalService;
-
-    @Autowired
     private ImageService imageService;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
+    /**
+     * The RentalController class handles the HTTP requests related to rental entities.
+     *
+     * @param rentalService the service used for performing CRUD operations on rental entities
+     */
     public RentalController(RentalService rentalService) {
-
         super(rentalService);
     }
 
+    /**
+     * Saves the rental object to the server.
+     * Picture uploading feature
+     *
+     * @param rentalDto the object to be saved
+     * @return a ResponseEntity containing the saved rentalDto and the HTTP status code CREATED (201)
+     * @throws RuntimeException if the rentalDto fails to save
+     */
+    @Override
     @PostMapping(path = "/", consumes = {"multipart/form-data"})
-    //public ResponseEntity<Rental> saveRental(@RequestBody RentalDto rentalDto, @RequestPart MultipartFile image){
-    //public ResponseEntity<Rental> saveRental(@RequestParam RentalDto rentalDto){
-    public ResponseEntity<Rental> saveRental(@ModelAttribute RentalDto rentalDto) {
+    public ResponseEntity<RentalDto> save(@ModelAttribute RentalDto rentalDto) {
         logger.info("Saving rental...");
         var imageFile = rentalDto.getPicture();
         if (imageFile!=null){
@@ -50,16 +57,16 @@ public class RentalController extends CrudController<RentalDto> {
                 imageService.saveImageToStorage(uploadDirectory, imageFile) ;
                 logger.debug("Rental {} - Picture : {}", rentalDto.getName(), rentalDto.getPicture().getOriginalFilename());
             } catch (IOException e) {
-                //TODO Implements custom error
                 logger.error("An error has occurred when saving file : {}", imageFile.getOriginalFilename());
                 throw new RuntimeException(e);
             }
         }
-
-
-
-        var savedRentalDto = this.rentalService.save(rentalDto);
+        RentalDto savedRentalDto = (RentalDto) super.save(rentalDto).getBody();
+        if (savedRentalDto==null){
+            logger.error("The Rental DTO has not been saved !");
+            throw new RuntimeException("The Rental DTO has not been saved !");
+        }
         logger.debug("Saved : {}", savedRentalDto);
-        return new ResponseEntity<Rental>(modelMapper.map(savedRentalDto, Rental.class), HttpStatus.CREATED);
+        return  new ResponseEntity<>(savedRentalDto, HttpStatus.CREATED);
     }
 }
