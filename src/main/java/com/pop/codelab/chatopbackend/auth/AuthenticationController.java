@@ -1,7 +1,6 @@
 package com.pop.codelab.chatopbackend.auth;
 
 import com.pop.codelab.chatopbackend.user.UserCreationDto;
-import com.pop.codelab.chatopbackend.user.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

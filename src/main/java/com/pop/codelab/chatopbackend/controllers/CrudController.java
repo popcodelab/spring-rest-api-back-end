@@ -1,18 +1,12 @@
 package com.pop.codelab.chatopbackend.controllers;
 
-import com.pop.codelab.chatopbackend.configuration.LoadDatabase;
 import com.pop.codelab.chatopbackend.controllers.dto.BaseDTO;
 import com.pop.codelab.chatopbackend.service.CrudService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +15,7 @@ public abstract class CrudController<T extends BaseDTO> {
 
     private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
 
-    private CrudService<T> service;
+    private final CrudService<T> service;
 
     public CrudController(CrudService<T> crudService){
         logger.info("Entering in CRUD Controller...");
@@ -47,6 +41,7 @@ public abstract class CrudController<T extends BaseDTO> {
 
     @PostMapping("/")
     public ResponseEntity<T> save(@RequestBody T body){
+        logger.debug("save : body = {}", body);
         return new ResponseEntity<>(service.save(body), HttpStatus.CREATED);
     }
 

@@ -8,7 +8,6 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-
 import java.time.LocalDateTime;
 
 @MappedSuperclass
@@ -24,10 +23,12 @@ public abstract class BaseEntity {
     private Long id;
 
     @CreationTimestamp
-    @Column(name= "created_at")
+    @Column(name= "created_at",
+            columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime createAt;
 
     @UpdateTimestamp
-    @Column(name= "updated_at")
+    @Column(name= "updated_at",
+            columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
 }

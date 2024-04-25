@@ -1,0 +1,72 @@
+package com.pop.codelab.chatopbackend.rental;
+
+import com.pop.codelab.chatopbackend.service.CrudService;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class RentalService implements CrudService<RentalDto> {
+    private static final Logger logger = LoggerFactory.getLogger(RentalService.class);
+
+    private final RentalRepository rentalRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Override
+    public List<RentalDto> findAll() {
+        logger.info("Gathering all rentals...");
+        List<Rental> rentals = rentalRepository.findAll();
+        logger.debug("Rental(s) count : {}", rentals.size());
+        return rentals.stream().map(this::convertToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<RentalDto> findById(Long id) {
+        Optional<Rental> rentalOptional = rentalRepository.findById(id);
+        logger.debug("Dto retrieved : {} ", rentalOptional);
+        return rentalOptional.map(this::convertToDto);
+    }
+
+    @Override
+    public RentalDto save(RentalDto rentalDto) {
+        logger.debug("Save {} dto", rentalDto);
+        Rental rental = modelMapper.map(rentalDto, Rental.class);
+        //TODO Handle exception
+        Rental result = rentalRepository.save(rental);
+        // TODO Optimize this
+        rentalDto = modelMapper.map(result, RentalDto.class);
+        return rentalDto;
+    }
+
+    @Override
+    public void delete(Long id) {
+        // TODO Ckeck how to handle exceptions on Web
+        rentalRepository.deleteById(id);
+    }
+
+    @Override
+    public RentalDto update(Long id, RentalDto messageDto) {
+        //TODO Check if dates are automatically updated. Otherwi
+        Rental savedRental = rentalRepository.findById(id).orElseThrow();
+        Rental rentalToUpdate = modelMapper.map(messageDto, Rental.class);
+        savedRental.setUser(rentalToUpdate.getUser());
+        var updatedRental = rentalRepository.save(savedRental);
+        return modelMapper.map(updatedRental, RentalDto.class);
+    }
+
+
+    private RentalDto convertToDto(Rental rental) {
+        return modelMapper.map(rental, RentalDto.class);
+    }
+}

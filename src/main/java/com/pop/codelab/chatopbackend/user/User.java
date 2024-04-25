@@ -2,22 +2,21 @@ package com.pop.codelab.chatopbackend.user;
 
 //import com.pop.codelab.chatopbackend.message.Message;
 //import com.pop.codelab.chatopbackend.rental.Rental;
+
 import com.pop.codelab.chatopbackend.entity.BaseEntity;
-import com.pop.codelab.chatopbackend.message.Message;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Data
 @Builder
