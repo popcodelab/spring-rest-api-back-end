@@ -1,4 +1,4 @@
-package com.pop.codelab.chatopbackend.rental;
+package com.pop.codelab.chatopbackend.rental.dto;
 
 import lombok.Builder;
 import lombok.Data;

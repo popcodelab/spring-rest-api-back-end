@@ -1,7 +1,7 @@
 package com.pop.codelab.chatopbackend.message;
 
 import com.pop.codelab.chatopbackend.controllers.dto.BaseDto;
-import com.pop.codelab.chatopbackend.user.UserDto;
+import com.pop.codelab.chatopbackend.user.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

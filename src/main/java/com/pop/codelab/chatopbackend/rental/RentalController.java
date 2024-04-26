@@ -1,6 +1,9 @@
 package com.pop.codelab.chatopbackend.rental;
 
 import com.pop.codelab.chatopbackend.controllers.CrudController;
+import com.pop.codelab.chatopbackend.rental.dto.AllRentalsResponseDto;
+import com.pop.codelab.chatopbackend.rental.dto.OneRentalResponseDto;
+import com.pop.codelab.chatopbackend.rental.dto.RentalDto;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +13,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/rentals")
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 public class RentalController extends CrudController<RentalDto> {
 
     private static final Logger logger = LoggerFactory.getLogger(RentalController.class);
@@ -31,7 +39,7 @@ public class RentalController extends CrudController<RentalDto> {
     }
 
     @Override
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/")
     public ResponseEntity<AllRentalsResponseDto> getAll() {
         logger.info("Getting all rentals");
         AllRentalsResponseDto rentalsResponseDto = AllRentalsResponseDto.builder().build();
@@ -46,15 +54,15 @@ public class RentalController extends CrudController<RentalDto> {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<OneRentalResponseDto> getById(@PathVariable Long id){
+    public ResponseEntity<OneRentalResponseDto> getById(@PathVariable Long id) {
         RentalDto rentalDto = (RentalDto) super.getById(id).getBody();
         OneRentalResponseDto responseDto = modelMapper.map(rentalDto, OneRentalResponseDto.class);
-        if (rentalDto!=null) {
+        if (rentalDto != null) {
             if (rentalDto.getPicture() != null) {
                 String fileName = rentalDto.getPicture().getName();
                 responseDto.setPicture(fileName);
             }
-            if (rentalDto.getUser()!=null){
+            if (rentalDto.getUser() != null) {
                 responseDto.setOwner_id(rentalDto.getUser().getId());
             }
         }
@@ -82,4 +90,13 @@ public class RentalController extends CrudController<RentalDto> {
         logger.debug("Saved : {}", savedRentalDto);
         return new ResponseEntity<>(savedRentalDto, HttpStatus.CREATED);
     }
+
+    @Override
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<String> update(@PathVariable Long id, @ModelAttribute RentalDto rentalDto) {
+        super.update(id, rentalDto);
+        return ResponseEntity.ok().body("{\"message\": \"Rental updated !\"}");
+
+    }
+
 }

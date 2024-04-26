@@ -1,7 +1,7 @@
-package com.pop.codelab.chatopbackend.rental;
+package com.pop.codelab.chatopbackend.rental.dto;
 
 import com.pop.codelab.chatopbackend.controllers.dto.BaseDto;
-import com.pop.codelab.chatopbackend.user.UserDto;
+import com.pop.codelab.chatopbackend.user.dto.UserDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

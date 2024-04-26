@@ -1,18 +1,17 @@
 package com.pop.codelab.chatopbackend.user;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.pop.codelab.chatopbackend.exception.ResourceNotFoundException;
+import com.pop.codelab.chatopbackend.service.CrudService;
+import com.pop.codelab.chatopbackend.user.dto.UserDto;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pop.codelab.chatopbackend.exception.ResourceNotFoundException;
-import com.pop.codelab.chatopbackend.service.CrudService;
-
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

@@ -1,7 +1,8 @@
-package com.pop.codelab.chatopbackend.user;
+package com.pop.codelab.chatopbackend.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pop.codelab.chatopbackend.controllers.dto.BaseDto;
+import com.pop.codelab.chatopbackend.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

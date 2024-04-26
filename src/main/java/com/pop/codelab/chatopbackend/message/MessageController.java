@@ -1,14 +1,13 @@
 package com.pop.codelab.chatopbackend.message;
 
+import com.pop.codelab.chatopbackend.controllers.CrudController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.pop.codelab.chatopbackend.controllers.CrudController;
-
 @RestController
 @RequestMapping("/api/messages")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET})
 public class MessageController extends CrudController<MessageDto> {
 
     public MessageController(MessageService messageService) {

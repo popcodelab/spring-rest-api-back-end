@@ -2,8 +2,8 @@ package com.pop.codelab.chatopbackend.auth;
 
 import com.pop.codelab.chatopbackend.security.jwt.JwtService;
 import com.pop.codelab.chatopbackend.user.User;
-import com.pop.codelab.chatopbackend.user.UserCreationDto;
 import com.pop.codelab.chatopbackend.user.UserRepository;
+import com.pop.codelab.chatopbackend.user.dto.UserCreationDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;

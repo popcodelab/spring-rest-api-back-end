@@ -1,21 +1,22 @@
 package com.pop.codelab.chatopbackend.rental;
 
-import com.pop.codelab.chatopbackend.service.ImageService;
-import org.springframework.beans.factory.annotation.Value;
 import com.pop.codelab.chatopbackend.exception.ResourceNotFoundException;
+import com.pop.codelab.chatopbackend.rental.dto.RentalDto;
 import com.pop.codelab.chatopbackend.service.CrudService;
+import com.pop.codelab.chatopbackend.service.ImageService;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,7 +44,7 @@ public class RentalService implements CrudService<RentalDto> {
         logger.info("Gathering all rentals...");
         List<Rental> rentals = rentalRepository.findAll();
         if (rentals.isEmpty()) {
-            throw new ResourceNotFoundException("No message found");
+            throw new ResourceNotFoundException("No rental found");
         }
         logger.debug("Rental(s) count : {}", rentals.size());
         return rentals.stream().map(this::convertToDto).collect(Collectors.toList());
@@ -107,12 +108,10 @@ public class RentalService implements CrudService<RentalDto> {
     }
 
     @Override
-    public RentalDto update(Long id, RentalDto messageDto) {
-        //TODO Check if dates are automatically updated. IMPORTANT
-        Rental savedRental = rentalRepository.findById(id).orElseThrow();
-        Rental rentalToUpdate = modelMapper.map(messageDto, Rental.class);
-        savedRental.setUser(rentalToUpdate.getUser());
-        var updatedRental = rentalRepository.save(savedRental);
+    public RentalDto update(Long id, RentalDto rentalDto) {
+        Rental originalRental = rentalRepository.findById(id).orElseThrow();
+        Rental rentalToUpdate = modelMapper.map(rentalDto, Rental.class );
+        var updatedRental = rentalRepository.save(rentalToUpdate);
         return modelMapper.map(updatedRental, RentalDto.class);
     }
 

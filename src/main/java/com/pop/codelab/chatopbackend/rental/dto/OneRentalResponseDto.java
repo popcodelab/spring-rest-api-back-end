@@ -1,8 +1,6 @@
-package com.pop.codelab.chatopbackend.rental;
+package com.pop.codelab.chatopbackend.rental.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pop.codelab.chatopbackend.controllers.dto.BaseDto;
-import com.pop.codelab.chatopbackend.user.UserDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

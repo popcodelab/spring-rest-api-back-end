@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/")
-@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET})
 @RequiredArgsConstructor
 public class ResourceController {
 
