@@ -1,6 +1,5 @@
 package com.pop.codelab.chatopbackend.controllers.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
