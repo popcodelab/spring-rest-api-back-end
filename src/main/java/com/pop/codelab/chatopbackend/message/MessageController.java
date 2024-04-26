@@ -24,12 +24,6 @@ public class MessageController extends CrudController<MessageDto> {
         super(messageService);
     }
 
-//    @Override
-//    @PostMapping("/")
-//    public ResponseEntity<?> save(@RequestBody MessageDto message) {
-//        ResponseEntity<?> savedEntity = super.save(message);
-//        return new ResponseEntity<>(savedEntity.getBody(), HttpStatus.CREATED);
-//    }
 
     @Override
     @PostMapping("/")
