@@ -5,6 +5,7 @@ import com.pop.codelab.chatopbackend.rental.dto.RentalDto;
 import com.pop.codelab.chatopbackend.service.CrudService;
 import com.pop.codelab.chatopbackend.service.ImageService;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -109,9 +110,7 @@ public class RentalService implements CrudService<RentalDto> {
 
     @Override
     public RentalDto update(Long id, RentalDto rentalDto) {
-        Rental originalRental = rentalRepository.findById(id).orElseThrow();
-        Rental rentalToUpdate = modelMapper.map(rentalDto, Rental.class );
-        var updatedRental = rentalRepository.save(rentalToUpdate);
+        var updatedRental = rentalRepository.save(modelMapper.map(rentalDto, Rental.class ));
         return modelMapper.map(updatedRental, RentalDto.class);
     }
 
