@@ -43,3 +43,7 @@ application:
 
   local-storage:
       upload-directory: "src/main/resources/static/images"
+
+
+
+
