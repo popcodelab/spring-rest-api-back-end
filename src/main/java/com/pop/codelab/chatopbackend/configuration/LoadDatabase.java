@@ -3,7 +3,6 @@ package com.pop.codelab.chatopbackend.configuration;
 import com.pop.codelab.chatopbackend.auth.AuthenticationService;
 import com.pop.codelab.chatopbackend.message.MessageDto;
 import com.pop.codelab.chatopbackend.message.MessageService;
-import com.pop.codelab.chatopbackend.rental.Rental;
 import com.pop.codelab.chatopbackend.rental.RentalDto;
 import com.pop.codelab.chatopbackend.rental.RentalService;
 import com.pop.codelab.chatopbackend.service.ImageService;
@@ -18,12 +17,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.math.BigDecimal;
-import java.nio.file.Path;
 
 import static com.pop.codelab.chatopbackend.user.Role.*;
 
@@ -133,9 +128,6 @@ public class LoadDatabase {
 
         var user = userRepository.findByEmail("user@mail.com").orElseThrow();
 
-        //File file = new File("C:\\Users\\pierr\\OneDrive\\Images\\fucked up unicorn.png");
-
-
         RentalDto rentalDtoToCreate = RentalDto.builder()
                 .price(BigDecimal.valueOf(1000))
                 .description("My First Rental ")
@@ -146,7 +138,21 @@ public class LoadDatabase {
                 .build();
 
         RentalDto savedRentalDto = rentalService.save(rentalDtoToCreate);
-        logger.debug("Message added : {}", savedRentalDto);
+        logger.debug("Rental added : {}", savedRentalDto);
+
+        rentalDtoToCreate = RentalDto.builder()
+                .price(BigDecimal.valueOf(1030))
+                .description("My second Rental ")
+                .name("rental_2")
+                .surface(BigDecimal.valueOf(59))
+                //.picture()
+                .user(modelMapper.map(user, UserDto.class))
+                .build();
+
+        savedRentalDto = rentalService.save(rentalDtoToCreate);
+        logger.debug("Rental added : {}", savedRentalDto);
+
+        logger.info("Rentals created.");
     }
 
     // endregion Data creation

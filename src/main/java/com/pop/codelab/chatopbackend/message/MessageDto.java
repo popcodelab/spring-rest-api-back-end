@@ -1,7 +1,6 @@
 package com.pop.codelab.chatopbackend.message;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.pop.codelab.chatopbackend.controllers.dto.BaseDTO;
+import com.pop.codelab.chatopbackend.controllers.dto.BaseDto;
 import com.pop.codelab.chatopbackend.user.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageDto extends BaseDTO {
+public class MessageDto extends BaseDto {
 
     private String message;
 

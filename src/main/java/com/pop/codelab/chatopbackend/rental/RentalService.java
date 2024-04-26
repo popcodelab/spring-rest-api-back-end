@@ -1,5 +1,7 @@
 package com.pop.codelab.chatopbackend.rental;
 
+import com.pop.codelab.chatopbackend.service.ImageService;
+import org.springframework.beans.factory.annotation.Value;
 import com.pop.codelab.chatopbackend.exception.ResourceNotFoundException;
 import com.pop.codelab.chatopbackend.service.CrudService;
 import lombok.RequiredArgsConstructor;
@@ -7,9 +9,13 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,10 +25,18 @@ import java.util.stream.Collectors;
 public class RentalService implements CrudService<RentalDto> {
     private static final Logger logger = LoggerFactory.getLogger(RentalService.class);
 
+    @Value("${application.local-storage.upload-directory}")
+    private String uploadDirectory;
+
     private final RentalRepository rentalRepository;
+
+    private final ImageService imageService;
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Value("${application.local-storage.upload-directory}")
+    private String imagesDirectoryPath;
 
     @Override
     public List<RentalDto> findAll() {
@@ -35,20 +49,52 @@ public class RentalService implements CrudService<RentalDto> {
         return rentals.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 
+
     @Override
     public Optional<RentalDto> findById(Long id) {
-        Optional<Rental> rentalOptional = rentalRepository.findById(id);
-        if (!rentalOptional.isPresent()){
-            throw new ResourceNotFoundException("No rental found with Id : "+ id);
+        Optional<Rental> optionalRental = rentalRepository.findById(id);
+        if (optionalRental.isEmpty()) {
+            logger.warn("Rental id : {} not found ! ", id);
+            throw new ResourceNotFoundException(String.format("Rental id : %s not found ! ", id));
         }
-        logger.debug("Dto retrieved : {} ", rentalOptional);
-        return rentalOptional.map(this::convertToDto);
+        RentalDto rentalDto = modelMapper.map(optionalRental, RentalDto.class);
+        if (optionalRental.get().getPicture()!=null) {
+            logger.debug("The rental : {} has a picture, need to extract it...", optionalRental.get().getName());
+            try {
+                String fileName = String.valueOf(Path.of(uploadDirectory).resolve(optionalRental.get().getPicture()));
+                MockMultipartFile file = new MockMultipartFile(optionalRental.get().getPicture(), new FileInputStream(fileName));
+                rentalDto.setPicture(file);
+
+            } catch (IOException e) {
+                throw new RuntimeException("Cannot retrieve the rental Picture :" + optionalRental.get().getPicture());
+            }
+        }
+        logger.debug("Rental Dto retrieved : {} ", rentalDto);
+        return Optional.of(rentalDto);
     }
+
+
 
 
     @Override
     public RentalDto save(RentalDto rentalDto) {
         Rental rental = modelMapper.map(rentalDto, Rental.class);
+
+        var imageFile = rentalDto.getPicture();
+        if (imageFile != null) {
+            try {
+                String uploadedFileName = imageService.saveImageToStorage(uploadDirectory, imageFile);
+                logger.debug("Rental {} - Picture : {} has been uploaded : {}",
+                        rentalDto.getName(),
+                        rentalDto.getPicture().getOriginalFilename(),
+                        uploadedFileName);
+                rental.setPicture( uploadedFileName);
+            } catch (IOException e) {
+                logger.error("An error has occurred when saving file : {}", imageFile.getOriginalFilename());
+                throw new RuntimeException(e);
+            }
+        }
+
         Rental savedRental = rentalRepository.save(rental);
         logger.debug("Rental : {} has been saved.", rentalDto);
         return modelMapper.map(savedRental, RentalDto.class);
@@ -73,4 +119,6 @@ public class RentalService implements CrudService<RentalDto> {
     private RentalDto convertToDto(Rental rental) {
         return modelMapper.map(rental, RentalDto.class);
     }
+
+
 }

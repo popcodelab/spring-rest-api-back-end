@@ -39,12 +39,12 @@ public class MessageService implements CrudService<MessageDto> {
 
     @Override
     public Optional<MessageDto> findById(Long id) {
-        Optional<Message> messageOptional = messageRepository.findById(id);
-        if (!messageOptional.isPresent()) {
+        Optional<Message> optionalMessage = messageRepository.findById(id);
+        if (optionalMessage.isEmpty()) {
             throw new ResourceNotFoundException("No message found with Id : "+ id);
         }
-        logger.debug("Dto retrieved : {} ", messageOptional);
-        return messageOptional.map(this::convertToDto);
+        logger.debug("MessageDto retrieved : {} ", optionalMessage);
+        return optionalMessage.map(this::convertToDto);
     }
 
     @Override

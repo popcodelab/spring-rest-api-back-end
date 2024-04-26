@@ -1,6 +1,6 @@
 package com.pop.codelab.chatopbackend.user;
 
-import com.pop.codelab.chatopbackend.controllers.dto.BaseDTO;
+import com.pop.codelab.chatopbackend.controllers.dto.BaseDto;
 import com.pop.codelab.chatopbackend.message.Message;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreationDto extends BaseDTO {
+public class UserCreationDto extends BaseDto {
     private String name;
     private String email;
     private String password;
