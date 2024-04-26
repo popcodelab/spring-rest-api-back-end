@@ -1,5 +1,8 @@
 package com.pop.codelab.chatopbackend.service;
 
+import com.pop.codelab.chatopbackend.rental.RentalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +21,8 @@ import java.util.UUID;
 @Service
 public class ImageService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ImageService.class);
+
     /**
      * Saves the given image file to the specified upload directory.
      *
@@ -27,6 +32,7 @@ public class ImageService {
      * @throws IOException if an I/O error occurs during the saving process
      */
     public String saveImageToStorage(String uploadDirectory, MultipartFile imageFile) throws IOException {
+        logger.debug("Uploading {} MultipartFile ...", imageFile.getOriginalFilename());
         String uniqueFileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
 
         Path uploadPath = Path.of(uploadDirectory);
@@ -37,7 +43,7 @@ public class ImageService {
         }
 
         Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
+        logger.debug("{} has been uploaded", uniqueFileName);
         return uniqueFileName;
     }
 

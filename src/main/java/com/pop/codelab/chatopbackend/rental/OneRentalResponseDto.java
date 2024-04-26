@@ -1,27 +1,27 @@
 package com.pop.codelab.chatopbackend.rental;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pop.codelab.chatopbackend.controllers.dto.BaseDto;
 import com.pop.codelab.chatopbackend.user.UserDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
 @Data
-@SuperBuilder
 @NoArgsConstructor
-public class RentalDto extends BaseDto {
+public class OneRentalResponseDto extends BaseDto {
+
     private String name;
 
     private BigDecimal surface;
 
     private BigDecimal price;
 
-    private MultipartFile picture;
+    private String picture;
 
     private String description;
 
-    public UserDto user;
+    public Long owner_id;
+
 }
