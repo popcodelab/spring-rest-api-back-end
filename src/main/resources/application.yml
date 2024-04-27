@@ -3,6 +3,7 @@
 # Application properties
 app:
   name: @project.name@
+  environment: development
   description: ${app.name} ${app.version} est @project.description@
   version: @project.version@
 
@@ -30,7 +31,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop #update #create-drop
-    show-sql: true # false for PROD
+    show-sql: false # false for PROD
     properties:
       hibernate:
         format_sql: true
@@ -42,7 +43,7 @@ application:
       expiration: 86400000 # a day
 
   local-storage:
-      upload-directory: "src/main/resources/static/images"
+    upload-directory: "src/main/resources/static/images"
 
 
 

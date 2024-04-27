@@ -16,21 +16,25 @@ import java.util.UUID;
  * The ImageService class provides functionality for saving, retrieving, and deleting image files.
  *
  * @author Pignon Pierre-Olivier
+ * @version 1.0
  */
 @Service
 public class ImageService {
 
+    /**
+     * Instance du logger
+     */
     private static final Logger logger = LoggerFactory.getLogger(ImageService.class);
 
     /**
      * Saves the given image file to the specified upload directory.
      *
      * @param uploadDirectory the directory where the image file should be stored
-     * @param imageFile the image file to be saved
+     * @param imageFile       the image file to be saved
      * @return the unique filename assigned to the saved image
      * @throws IOException if an I/O error occurs during the saving process
      */
-    public String saveImageToStorage(String uploadDirectory, MultipartFile imageFile) throws IOException {
+    public String saveImageToStorage(final String uploadDirectory, final MultipartFile imageFile) throws IOException {
         logger.debug("Uploading {} MultipartFile ...", imageFile.getOriginalFilename());
         String uniqueFileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
 
@@ -50,11 +54,11 @@ public class ImageService {
      * Retrieves the image with the specified imageDirectory and imageName.
      *
      * @param imageDirectory the directory where the image is located
-     * @param imageName the name of the image file
+     * @param imageName      the name of the image file
      * @return the bytes of the image file
      * @throws IOException if an I/O error occurs while retrieving the image
      */
-    public byte[] getImage(String imageDirectory, String imageName) throws IOException {
+    public byte[] getImage(final String imageDirectory, final String imageName) throws IOException {
         Path imagePath = Path.of(imageDirectory, imageName);
 
         if (Files.exists(imagePath)) {
@@ -69,11 +73,11 @@ public class ImageService {
      * Deletes the image with the specified imageDirectory and imageName.
      *
      * @param imageDirectory the directory where the image is located
-     * @param imageName the name of the image file
+     * @param imageName      the name of the image file
      * @return a string indicating the result of the deletion operation ("Success" or "Failed")
      * @throws IOException if an I/O error occurs while deleting the image
      */
-    public String deleteImage(String imageDirectory, String imageName) throws IOException {
+    public String deleteImage(final String imageDirectory, final String imageName) throws IOException {
         Path imagePath = Path.of(imageDirectory, imageName);
 
         if (Files.exists(imagePath)) {

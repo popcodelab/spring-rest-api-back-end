@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -32,9 +33,16 @@ public class MessageControlerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private MessageService messageService;
+
     @Test
-    public void getAllMessagesAPI() throws Exception
-    {
+    public void contextLoads() throws Exception {
+        assertThat(messageService).isNotNull();
+    }
+
+    @Test
+    public void getAllMessagesAPI() throws Exception {
         ResultActions resultActions = mockMvc.perform(get("/api/messages/")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -52,13 +60,12 @@ public class MessageControlerTest {
     }
 
     @Test
-    public void createMessageAPI() throws Exception
-    {
+    public void createMessageAPI() throws Exception {
         String messageContent = "Unit test message";
         Message message = Message.builder()
-                        .message(messageContent)
+                .message(messageContent)
                 .build();
-        mockMvc.perform( MockMvcRequestBuilders
+        mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/messages/")
                         .content(JsonUtil.toJson(message))
                         .contentType(MediaType.APPLICATION_JSON)

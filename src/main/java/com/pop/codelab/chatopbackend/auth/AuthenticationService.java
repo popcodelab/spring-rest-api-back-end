@@ -15,56 +15,101 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-//import static com.pop.codelab.chatopbackend.user.UserMapper.INSTANCE;
-
+/**
+ * The AuthenticationService class is responsible for user authentication and registration.
+ * <p></p>
+ *
+ * @author Pignon Pierre-Olivier
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-  private final UserRepository userRepository;
-  private final PasswordEncoder passwordEncoder;
-  private final JwtService jwtService;
-  private final AuthenticationManager authenticationManager;
+    /**
+     * The userRepository variable is an instance of the UserRepository interface.
+     * It is used in the AuthenticationService class to perform CRUD operations on User entities.
+     * <p></p>
+     *
+     * @see UserRepository
+     * @see AuthenticationService
+     */
+    private final UserRepository userRepository;
+    /**
+     * The passwordEncoder variable is an instance of the PasswordEncoder interface.
+     * It is used in the AuthenticationService class to encode and decode passwords.
+     *
+     * @see PasswordEncoder
+     * @see AuthenticationService
+     */
+    private final PasswordEncoder passwordEncoder;
 
-  @Autowired
-  private ModelMapper modelMapper;
+    /**
+     * The JwtService class is responsible for generating and validating JSON Web Tokens (JWT).
+     * It provides methods for extracting claims from a token, generating a token based on user details,
+     * and checking if a token is valid and not expired.
+     */
+    private final JwtService jwtService;
 
-  private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
+    /**
+     * The authenticationManager variable represents an instance of the AuthenticationManager interface,
+     * which is responsible for authenticating a user.
+     * <p></p>
+     * The authenticationManager is used by the AuthenticationService class to authenticate user requests.
+     *
+     * @see AuthenticationService#authenticate(AuthenticationRequest)
+     * @see AuthenticationManager
+     */
+    private final AuthenticationManager authenticationManager;
 
-  public AuthenticationResponse register(UserCreationDto userCreationDto) {
-    logger.debug("Register user : {}", userCreationDto);
-//    var user = User.builder()
-//            .name(userCreationDto.getName())
-//        .email(userCreationDto.getEmail())
-//        .password(passwordEncoder.encode(userCreationDto.getPassword()))
-//        .role((userCreationDto.getRole()==null? Role.USER:userCreationDto.getRole()))
-//        .build();
-    //User user = INSTANCE.dtoToUser(userCreationDto);
+    /**
+     * ModelMapper instance to map a Dto to an Entity and vice versa.
+     */
+    @Autowired
+    private ModelMapper modelMapper;
 
-    User user  = modelMapper.map(userCreationDto, User.class);
-    user.setPassword(passwordEncoder.encode(userCreationDto.getPassword()));
-    userRepository.save(user);
-    var jwtToken = jwtService.generateToken(user);
-    return AuthenticationResponse.builder()
-        .accessToken(jwtToken)
-        .build();
-  }
+    /**
+     * The logger variable is an instance of the Logger class from the org.slf4j package.
+     **/
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
-  public AuthenticationResponse authenticate(AuthenticationRequest request) {
-    var authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(
-            request.getEmail(),
-            request.getPassword()
-        )
-    );
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-    //var principal = (UserPrincipal) authentication.getPrincipal();
+    /**
+     * Registers a new user.
+     * <p></p>
+     *
+     * @param userCreationDto The UserCreationDto object representing the user information to be registered.
+     * @return AuthenticationResponse The response object containing the access token for the registered user.
+     */
+    public AuthenticationResponse register(final UserCreationDto userCreationDto) {
+        logger.debug("Register user : {}", userCreationDto);
+        User user = modelMapper.map(userCreationDto, User.class);
+        user.setPassword(passwordEncoder.encode(userCreationDto.getPassword()));
+        userRepository.save(user);
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .accessToken(jwtToken)
+                .build();
+    }
 
-    var user = userRepository.findByEmail(request.getEmail())
-        .orElseThrow();
-    var jwtToken = jwtService.generateToken(user);
-    return AuthenticationResponse.builder()
-        .accessToken(jwtToken)
-        .build();
-  }
-
+    /**
+     * Authenticates a user.
+     * <p></p>
+     *
+     * @param request The AuthenticationRequest object containing the user's email and password.
+     * @return The response object containing the access token for the authenticated user.
+     */
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        var authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        var user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow();
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .accessToken(jwtToken)
+                .build();
+    }
 }

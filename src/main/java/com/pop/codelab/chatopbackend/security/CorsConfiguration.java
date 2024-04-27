@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * mappings to the provided CORS registry.
  *
  * @author Pignon Pierre-Olivier
+ * @version 1.0
  */
 @Configuration
 @EnableWebSecurity
@@ -23,7 +24,7 @@ public class CorsConfiguration implements WebMvcConfigurer {
      * @param registry the CORS registry
      */
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
+    public void addCorsMappings(final CorsRegistry registry) {
         registry.addMapping("/**").allowedOrigins("*");
 //                .allowedOrigins("http://localhost:4200") // Front Chatop Url
 //                .allowedMethods("GET", "POST", "PUT", "DELETE")

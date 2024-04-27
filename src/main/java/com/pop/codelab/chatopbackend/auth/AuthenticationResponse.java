@@ -8,8 +8,11 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * The AuthenticationResponse class represents the response object returned by an authentication mechanism.
- * It contains the access token that is used to authenticate.
+ * A class representing the response object for authentication.
+ * <p></p>
+ *
+ * @author Pignon Pierre-Olivier
+ * @version 1.0
  */
 @Data
 @Builder
@@ -17,6 +20,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationResponse {
 
-  @JsonProperty("token")
-  private String accessToken;
+    /**
+     * Represents an access token for authentication.
+     */
+    @JsonProperty("token")
+    private String accessToken;
 }

@@ -8,12 +8,27 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.Date;
 
+/**
+ * This class is responsible for handling exceptions thrown by controllers.
+ * <p></p>
+ *
+ * @author Pignon Pierre-Olivier
+ * @version 1.0
+ */
 @RestControllerAdvice
 public class ControllerExceptionHandler {
 
+    /**
+     * Handle the ResourceNotFoundException and return an appropriate ErrorMessage object.
+     * <p></p>
+     *
+     * @param ex      The ResourceNotFoundException that occurred
+     * @param request The WebRequest object representing the current request
+     * @return An ErrorMessage object containing the error details
+     */
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public ErrorMessage resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+    public ErrorMessage resourceNotFoundException(final ResourceNotFoundException ex, final WebRequest request) {
         ErrorMessage message = new ErrorMessage(
                 HttpStatus.NOT_FOUND.value(),
                 new Date(),
@@ -23,9 +38,17 @@ public class ControllerExceptionHandler {
         return message;
     }
 
+    /**
+     * Handles exceptions thrown by controllers and returns an appropriate ErrorMessage object.
+     * <p></p>
+     *
+     * @param ex      The Exception that occurred
+     * @param request The WebRequest object representing the current request
+     * @return An ErrorMessage object containing the error details
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorMessage globalExceptionHandler(Exception ex, WebRequest request) {
+    public ErrorMessage globalExceptionHandler(final Exception ex, final WebRequest request) {
         ErrorMessage message = new ErrorMessage(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 new Date(),
@@ -34,5 +57,4 @@ public class ControllerExceptionHandler {
 
         return message;
     }
-
 }

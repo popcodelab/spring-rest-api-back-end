@@ -3,6 +3,12 @@ package com.pop.codelab.chatopbackend.user;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Represents the permissions available in the system.
+ *
+ * @author Pignon Pierre-Olivier
+ * @version 1.0
+ */
 @RequiredArgsConstructor
 public enum Permission {
 
@@ -13,9 +19,7 @@ public enum Permission {
     MANAGER_READ("management:read"),
     MANAGER_UPDATE("management:update"),
     MANAGER_CREATE("management:create"),
-    MANAGER_DELETE("management:delete")
-
-    ;
+    MANAGER_DELETE("management:delete");
 
     @Getter
     private final String permission;

@@ -13,46 +13,79 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 
-import static com.pop.codelab.chatopbackend.user.Role.*;
+import static com.pop.codelab.chatopbackend.user.Role.ADMIN;
+import static com.pop.codelab.chatopbackend.user.Role.MANAGER;
+import static com.pop.codelab.chatopbackend.user.Role.USER;
 
-
+/**
+ * The LoadDatabase class is responsible for setting up the initial data in the application database.
+ * <p></p>
+ *
+ * @author Pignon Pierre-Olivier
+ * @version 1.0
+ */
 @Configuration
 public class LoadDatabase {
 
+    /**
+     * The logger variable is an instance of the Logger class from the org.slf4j package.
+     **/
     private static final Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
 
+    /**
+     * The userRepository variable is an instance of the UserRepository interface,
+     * which extends the JpaRepository interface.
+     * It provides methods to perform CRUD operations on User entities in the database.
+     * <p></p>
+     * It has the following methods:
+     * - findByEmail(String email): Returns an Optional<User> object that represents
+     * the user with the given email address, if it exists.
+     * <p></p>
+     * Usage examples:
+     * - Optional<User> user = userRepository.findByEmail("example@example.com");
+     */
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * The userCreationDto variable represents the data needed to create a new user.
+     */
     private UserCreationDto userCreationDto;
 
-    @Value("${application.local-storage.upload-directory}")
-    private String uploadDirectory;
-
+    /**
+     * Mapper used to map Dto and Entity.
+     */
     @Autowired
     private ModelMapper modelMapper;
 
     /**
+     * The commandLineRunner method is a bean that implements the CommandLineRunner interface.
+     * It is responsible for executing the specified logic when the application starts.
+     * <p></p>
      * Performs setup actions.
-     * <p>
+     * <p></p>
      * Once the Spring application context is fully loaded and before it starts running methods to initialize data
      * are called
+     * <p></p>
      *
-     * @param authenticationService the AuthenticationService instance used for registration
+     * @param authenticationService the AuthenticationService instance used to create users
+     * @param messageService        the MessageService instance used to create messages
+     * @param rentalService         the RentalService instance used to create rentals
+     * @param imageService          the ImageService instance used to save rental pictures
+     * @return a CommandLineRunner object that executes the specified logic
      */
     @Bean
     public CommandLineRunner commandLineRunner(
-            AuthenticationService authenticationService,
-            MessageService messageService,
-            RentalService rentalService,
-            ImageService imageService
+            final AuthenticationService authenticationService,
+            final MessageService messageService,
+            final RentalService rentalService,
+            final ImageService imageService
     ) {
         return args -> {
             createUsers(authenticationService);
@@ -65,10 +98,11 @@ public class LoadDatabase {
 
     /**
      * Creates three users - one ADMIN, one MANAGER, and one USER.
+     * <p></p>
      *
      * @param authenticationService the AuthenticationService instance used for user registration
      */
-    private void createUsers(AuthenticationService authenticationService) {
+    private void createUsers(final AuthenticationService authenticationService) {
         logger.info("Creating users...");
         UserCreationDto adminDto = UserCreationDto.builder()
                 .name("Admin")
@@ -100,7 +134,13 @@ public class LoadDatabase {
 
     }
 
-    private void createMessages(MessageService messageService) {
+    /**
+     * Creates two messages from the admin user.
+     * <p></p>
+     *
+     * @param messageService The MessageService instance used to save the messages.
+     */
+    private void createMessages(final MessageService messageService) {
         logger.info("Creating messages...");
 
         var user = userRepository.findByEmail("admin@mail.com").orElseThrow();
@@ -123,7 +163,16 @@ public class LoadDatabase {
         logger.info("Messages created.");
     }
 
-    private void createRentals(RentalService rentalService, ImageService imageService){
+    /**
+     * Creates rentals in the system.
+     * <p></p>
+     *
+     * @param rentalService the RentalService instance used to save the rentals
+     * @param imageService  the ImageService instance used to save the rental pictures
+     */
+    private void createRentals(
+            final RentalService rentalService,
+            final ImageService imageService) {
         logger.info("Creating rentals...");
 
         var user = userRepository.findByEmail("user@mail.com").orElseThrow();
