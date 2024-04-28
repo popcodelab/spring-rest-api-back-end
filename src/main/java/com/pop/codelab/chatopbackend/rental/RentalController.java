@@ -136,10 +136,10 @@ public class RentalController extends CrudController<RentalDto> {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Rental created",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RentalDto.class))}),
+                            schema = @Schema(implementation = String.class))}),
             @ApiResponse(responseCode = "403", description = "Forbidden")
     })
-    public ResponseEntity<RentalDto> save(final @ModelAttribute RentalDto rentalDto) {
+    public ResponseEntity<String> save(final @ModelAttribute RentalDto rentalDto) {
         logger.info("Saving rental...");
         RentalDto savedRentalDto = (RentalDto) super.save(rentalDto).getBody();
         if (savedRentalDto == null) {
@@ -147,14 +147,14 @@ public class RentalController extends CrudController<RentalDto> {
             throw new RuntimeException("The Rental DTO has not been saved !");
         }
         logger.debug("Saved : {}", savedRentalDto);
-        return new ResponseEntity<>(savedRentalDto, HttpStatus.CREATED);
+        return ResponseEntity.status  (HttpStatus.CREATED).body("{\"message\": \"Rental created !\"}");
     }
 
     /**
      * Updates a rental object with the specified ID.
      *
      * @param id        the ID of the rental object to be updated
-     * @param rentalDto the updated rental object
+     * @param rentalDto the updated rental object()
      * @return a ResponseEntity with the HTTP status code and a message indicating the result of the update
      * @throws RuntimeException if an error occurs while updating the rental object
      */
