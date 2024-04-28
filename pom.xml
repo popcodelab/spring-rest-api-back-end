@@ -18,6 +18,7 @@
         <java.version>17</java.version>
 <!--        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>-->
         <org.modelmapper.version>3.2.0</org.modelmapper.version>
+        <start-class>com.pop.codelab.chatopbackend.ChatopBackendApplication</start-class>
     </properties>
     <dependencies>
         <!-- Spring Boot Web Starter -->
@@ -132,5 +133,12 @@
 
         </plugins>
     </build>
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>local-repo</id>-->
+<!--            <name>Local Repository</name>-->
+<!--            <url>file://${project.build.directory}/local-repo</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 
 </project>
