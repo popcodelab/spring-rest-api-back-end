@@ -1,7 +1,7 @@
 package com.pop.codelab.chatopbackend.business.rental.dto;
 
-import com.pop.codelab.chatopbackend.dto.BaseDto;
 import com.pop.codelab.chatopbackend.business.user.dto.UserDto;
+import com.pop.codelab.chatopbackend.dto.BaseDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

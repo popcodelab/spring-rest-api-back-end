@@ -1,9 +1,9 @@
 package com.pop.codelab.chatopbackend.business.message;
 
 
+import com.pop.codelab.chatopbackend.business.rental.Rental;
 import com.pop.codelab.chatopbackend.business.user.User;
 import com.pop.codelab.chatopbackend.entity.BaseEntity;
-import com.pop.codelab.chatopbackend.business.rental.Rental;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;

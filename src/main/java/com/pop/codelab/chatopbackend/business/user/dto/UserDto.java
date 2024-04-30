@@ -3,11 +3,7 @@ package com.pop.codelab.chatopbackend.business.user.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pop.codelab.chatopbackend.business.user.Role;
 import com.pop.codelab.chatopbackend.dto.BaseDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * The UserDto class represents a Data Transfer Object (DTO) for User data.
