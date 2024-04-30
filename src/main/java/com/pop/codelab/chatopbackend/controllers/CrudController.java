@@ -1,6 +1,6 @@
 package com.pop.codelab.chatopbackend.controllers;
 
-import com.pop.codelab.chatopbackend.controllers.dto.BaseDto;
+import com.pop.codelab.chatopbackend.dto.BaseDto;
 import com.pop.codelab.chatopbackend.service.CrudService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

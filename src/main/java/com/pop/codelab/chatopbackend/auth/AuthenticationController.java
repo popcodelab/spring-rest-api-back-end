@@ -1,6 +1,6 @@
 package com.pop.codelab.chatopbackend.auth;
 
-import com.pop.codelab.chatopbackend.user.dto.UserCreationDto;
+import com.pop.codelab.chatopbackend.business.user.dto.UserCreationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

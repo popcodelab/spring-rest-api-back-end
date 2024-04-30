@@ -1,14 +1,14 @@
 package com.pop.codelab.chatopbackend.configuration;
 
 import com.pop.codelab.chatopbackend.auth.AuthenticationService;
-import com.pop.codelab.chatopbackend.message.MessageDto;
-import com.pop.codelab.chatopbackend.message.MessageService;
-import com.pop.codelab.chatopbackend.rental.RentalService;
-import com.pop.codelab.chatopbackend.rental.dto.RentalDto;
+import com.pop.codelab.chatopbackend.business.message.MessageDto;
+import com.pop.codelab.chatopbackend.business.message.MessageService;
+import com.pop.codelab.chatopbackend.business.rental.RentalService;
+import com.pop.codelab.chatopbackend.business.rental.dto.RentalDto;
 import com.pop.codelab.chatopbackend.service.ImageService;
-import com.pop.codelab.chatopbackend.user.UserRepository;
-import com.pop.codelab.chatopbackend.user.dto.UserCreationDto;
-import com.pop.codelab.chatopbackend.user.dto.UserDto;
+import com.pop.codelab.chatopbackend.business.user.UserRepository;
+import com.pop.codelab.chatopbackend.business.user.dto.UserCreationDto;
+import com.pop.codelab.chatopbackend.business.user.dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +19,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 
-import static com.pop.codelab.chatopbackend.user.Role.ADMIN;
-import static com.pop.codelab.chatopbackend.user.Role.MANAGER;
-import static com.pop.codelab.chatopbackend.user.Role.USER;
+import static com.pop.codelab.chatopbackend.business.user.Role.ADMIN;
+import static com.pop.codelab.chatopbackend.business.user.Role.MANAGER;
+import static com.pop.codelab.chatopbackend.business.user.Role.USER;
 
 /**
  * The LoadDatabase class is responsible for setting up the initial data in the application database.

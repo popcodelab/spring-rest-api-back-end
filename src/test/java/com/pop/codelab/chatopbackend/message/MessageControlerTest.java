@@ -3,6 +3,8 @@ package com.pop.codelab.chatopbackend.message;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pop.codelab.chatopbackend.JsonUtil;
+import com.pop.codelab.chatopbackend.business.message.Message;
+import com.pop.codelab.chatopbackend.business.message.MessageService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

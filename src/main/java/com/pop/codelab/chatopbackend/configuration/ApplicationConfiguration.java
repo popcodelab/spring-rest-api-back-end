@@ -1,6 +1,6 @@
 package com.pop.codelab.chatopbackend.configuration;
 
-import com.pop.codelab.chatopbackend.user.UserRepository;
+import com.pop.codelab.chatopbackend.business.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

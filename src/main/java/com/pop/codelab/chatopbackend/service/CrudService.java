@@ -1,6 +1,6 @@
 package com.pop.codelab.chatopbackend.service;
 
-import com.pop.codelab.chatopbackend.controllers.dto.BaseDto;
+import com.pop.codelab.chatopbackend.dto.BaseDto;
 
 import java.io.IOException;
 import java.util.List;
