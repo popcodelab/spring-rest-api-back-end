@@ -64,7 +64,7 @@ Install dependencies:
   <img style="height: 40px;width: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/spring.svg?sanitize=true" alt="Spring Boot 3.2.4"></td>
 </tr>
 <tr style="border: none"> 
-  <td style="border: none">JPA</td>
+  <td style="border: none" colspan="2">JPA</td>
 </tr>
 <tr style="border: none">
   <td style="border: none">JSON</td><td style="border: none">
