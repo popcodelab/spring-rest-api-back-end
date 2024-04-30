@@ -63,12 +63,9 @@ Install dependencies:
   <td style="border: none">Spring Boot 3.2.4</td><td style="border: none">
   <img style="height: 40px;width: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/spring.svg?sanitize=true" alt="Spring Boot 3.2.4"></td>
 </tr>
-<<<<<<< HEAD
-=======
 <tr style="border: none"> 
-  <td style="border: none">JPA</td>
+  <td style="border: none" colspan="">JPA</td>
 </tr>
->>>>>>> release
 <tr style="border: none">
   <td style="border: none">JSON</td><td style="border: none">
   <img style="height: 40px;width: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/json5-smiley.svg?sanitize=true" alt="JSON"></td>
