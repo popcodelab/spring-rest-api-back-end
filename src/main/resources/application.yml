@@ -1,0 +1,50 @@
+# application.yml
+
+# Application properties
+app:
+  name: @project.name@
+  environment: development
+  description: ${app.name} ${app.version} est @project.description@
+  version: @project.version@
+
+# Logging properties
+logging:
+  level:
+    root: INFO   # Root logger level
+    org.springframework.web: ERROR
+    com.pop.codelab.chatopbackend: DEBUG
+    org.hibernate: ERROR
+  file:
+    name: logs/${app.name}.log  # Log file name and location
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"  # Console log pattern
+    file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"     # File log pattern
+  #config: classpath:logback-spring.xml  # Optional: path to an external Logback configuration file
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/chatop
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop #update #create-drop
+    show-sql: false # false for PROD
+    properties:
+      hibernate:
+        format_sql: true
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000 # a day
+
+  local-storage:
+    upload-directory: "src/main/resources/static/images"
+
+
+
+
