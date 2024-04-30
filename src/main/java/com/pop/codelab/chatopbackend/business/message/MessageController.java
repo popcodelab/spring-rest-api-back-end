@@ -65,12 +65,8 @@ public class MessageController extends CrudController<MessageDto> {
             @ApiResponse(responseCode = "403", description = "Forbidden")
     })
     public ResponseEntity<?> save(final @RequestBody MessageDto messageDto) {
-        ResponseEntity<?> savedResponseEntity = super.save(messageDto);
-        MessageDto savedMessageDto = (MessageDto) savedResponseEntity.getBody();
-        MessageCreationResponse messageCreationDto = MessageCreationResponse.builder()
-                .message(savedMessageDto.getMessage())
-                .build();
-        return new ResponseEntity<>(messageCreationDto, HttpStatus.CREATED);
+        super.save(messageDto);
+        return ResponseEntity.status  (HttpStatus.CREATED).body("{\"message\": \"Message sent with success\"}");
     }
 
     /**

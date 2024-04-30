@@ -49,7 +49,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody final UserCreationDto userDto
     ) {
-        return ResponseEntity.ok(authenticationService.register(userDto));
+        return ResponseEntity.ok().build();
     }
 
     /**
