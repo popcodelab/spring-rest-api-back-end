@@ -42,6 +42,6 @@ public class AllRentalsResponseDto {
      * @see UserDto
      * @see RentalController#getAll()
      */
-    private List<RentalDto> rentals;
+    private List<OneRentalResponseDto> rentals;
 
 }

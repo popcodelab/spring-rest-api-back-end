@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class RentalController extends CrudController<RentalDto> {
         AllRentalsResponseDto rentalsResponseDto = AllRentalsResponseDto.builder().build();
         Object responseBody = super.getAll().getBody();
         if (responseBody instanceof List) {
-            rentalsResponseDto.setRentals((List<RentalDto>) responseBody);
+            rentalsResponseDto.setRentals((List<OneRentalResponseDto>) responseBody);
         } else {
             logger.warn("Response entity is not of type List<RentalDto>");
         }
@@ -102,14 +103,22 @@ public class RentalController extends CrudController<RentalDto> {
         OneRentalResponseDto responseDto = modelMapper.map(rentalDto, OneRentalResponseDto.class);
         if (rentalDto != null) {
             if (rentalDto.getPicture() != null) {
-                String fileName = rentalDto.getPicture().getName();
-                responseDto.setPicture(fileName);
+                responseDto.setPicture(getImageToServeUrl(rentalDto));
             }
             if (rentalDto.getUser() != null) {
                 responseDto.setOwner_id(rentalDto.getUser().getId());
             }
         }
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
+    private String getImageToServeUrl(final RentalDto rentalDto){
+        String imageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/images/")
+                .path(rentalDto.getPicture().getName())
+                .toUriString();
+        logger.debug("Image will be served at  = {}", imageUrl);
+        return imageUrl;
     }
 
 

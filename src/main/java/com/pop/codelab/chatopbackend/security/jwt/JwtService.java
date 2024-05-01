@@ -90,6 +90,7 @@ public class JwtService {
      * @return The generated token as a string.
      */
     public String generateToken(final UserDetails userDetails) {
+
         return generateToken(new HashMap<>(), userDetails);
     }
 

@@ -19,9 +19,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 
-import static com.pop.codelab.chatopbackend.business.user.Role.ADMIN;
-import static com.pop.codelab.chatopbackend.business.user.Role.MANAGER;
-import static com.pop.codelab.chatopbackend.business.user.Role.USER;
+import static com.pop.codelab.chatopbackend.business.user.Role.*;
 
 /**
  * The LoadDatabase class is responsible for setting up the initial data in the application database.

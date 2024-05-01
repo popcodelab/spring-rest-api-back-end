@@ -1,5 +1,6 @@
 package com.pop.codelab.chatopbackend.business.rental;
 
+import com.pop.codelab.chatopbackend.business.rental.dto.OneRentalResponseDto;
 import com.pop.codelab.chatopbackend.business.rental.dto.RentalDto;
 import com.pop.codelab.chatopbackend.exception.ResourceNotFoundException;
 import com.pop.codelab.chatopbackend.service.CrudService;
@@ -12,13 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * The RentalService class provides CRUD operations for managing RentalDto objects.
@@ -106,15 +109,35 @@ public class RentalService implements CrudService<RentalDto> {
      * @throws ResourceNotFoundException if no rentals are found
      */
     @Override
-    public List<RentalDto> findAll() {
+    public List<OneRentalResponseDto> findAll() {
         logger.info("Gathering all rentals...");
         List<Rental> rentals = rentalRepository.findAll();
         if (rentals.isEmpty()) {
             throw new ResourceNotFoundException("No rental found");
         }
+        List<OneRentalResponseDto> oneRentalResponseDtoList = new ArrayList<>();
+        for(Rental rental : rentals){
+            OneRentalResponseDto oneRentalResponseDto = modelMapper.map(rental, OneRentalResponseDto.class);
+            if (rental.getPicture()!=null && !rental.getPicture().isEmpty()){
+                String fileName = String.valueOf(Path.of(uploadDirectory).resolve(rental.getPicture()));
+                if (Files.exists(Path.of(fileName))) {
+                    logger.debug("Retrieving the image : {} ", fileName);
+                    String imageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+                            .path("/images/")
+                            .path(rental.getPicture())
+                            .toUriString();
+                    oneRentalResponseDto.setPicture(imageUrl);
+                    logger.debug("Image will be served at  = {}", imageUrl);
+                }else{
+                    logger.warn("The image {} has not been found !", fileName);
+                }
+            }
+            oneRentalResponseDtoList.add(oneRentalResponseDto);
+        }
         logger.debug("Rental(s) count : {}", rentals.size());
-        return rentals.stream().map(this::convertToDto).collect(Collectors.toList());
+        return oneRentalResponseDtoList;
     }
+
 
     /**
      * Retrieves a RentalDto object by its ID.
@@ -136,8 +159,13 @@ public class RentalService implements CrudService<RentalDto> {
             logger.debug("The rental : {} has a picture, need to extract it...", optionalRental.get().getName());
             try {
                 String fileName = String.valueOf(Path.of(uploadDirectory).resolve(optionalRental.get().getPicture()));
-                MockMultipartFile file = new MockMultipartFile(optionalRental.get().getPicture(), new FileInputStream(fileName));
-                rentalDto.setPicture(file);
+                if (Files.exists(Path.of(fileName))) {
+                    logger.info("Retrieving the image : {} ", fileName);
+                    MockMultipartFile file = new MockMultipartFile(optionalRental.get().getPicture(), new FileInputStream(fileName));
+                    rentalDto.setPicture(file);
+                }else{
+                    logger.warn("The image {} has not been found !", fileName);
+                }
 
             } catch (IOException e) {
                 throw new RuntimeException("Cannot retrieve the rental Picture :" + optionalRental.get().getPicture());
@@ -146,6 +174,8 @@ public class RentalService implements CrudService<RentalDto> {
         logger.debug("Rental Dto retrieved : {} ", rentalDto);
         return Optional.of(rentalDto);
     }
+
+
 
     /**
      * Saves the given RentalDto object to the repository.
@@ -172,7 +202,6 @@ public class RentalService implements CrudService<RentalDto> {
                 throw new RuntimeException(e);
             }
         }
-
         Rental savedRental = rentalRepository.save(rental);
         logger.debug("Rental : {} has been saved.", rentalDto);
         return modelMapper.map(savedRental, RentalDto.class);
@@ -186,7 +215,6 @@ public class RentalService implements CrudService<RentalDto> {
      */
     @Override
     public void delete(final Long id) {
-        // TODO Ckeck how to handle exceptions on Web
         rentalRepository.deleteById(id);
     }
 

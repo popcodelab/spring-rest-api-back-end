@@ -24,7 +24,7 @@ public interface CrudService<T extends BaseDto> {
      *
      * @return a list of objects
      */
-    List<T> findAll();
+    List<?> findAll();
 
     /**
      * Retrieves an object by its ID.

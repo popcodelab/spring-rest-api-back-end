@@ -127,6 +127,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
+                                .requestMatchers("/images/**") // Assuming the URLs for serving images start with "/api/images/"
+                                .permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
