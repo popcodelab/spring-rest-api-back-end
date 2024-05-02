@@ -10,7 +10,6 @@ import java.util.Date;
 
 /**
  * This class is responsible for handling exceptions thrown by controllers.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -20,7 +19,6 @@ public class ControllerExceptionHandler {
 
     /**
      * Handle the ResourceNotFoundException and return an appropriate ErrorMessage object.
-     * <p></p>
      *
      * @param ex      The ResourceNotFoundException that occurred
      * @param request The WebRequest object representing the current request
@@ -40,7 +38,6 @@ public class ControllerExceptionHandler {
 
     /**
      * Handles exceptions thrown by controllers and returns an appropriate ErrorMessage object.
-     * <p></p>
      *
      * @param ex      The Exception that occurred
      * @param request The WebRequest object representing the current request

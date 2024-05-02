@@ -13,13 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * The AuthenticationController class handles the authentication-related API endpoints.
@@ -45,7 +39,6 @@ public class AuthenticationController {
 
     /**
      * Registers a new user.
-     * <p></p>
      *
      * @param userDto The UserCreationDto object representing the user information to be registered.
      * @return ResponseEntity<AuthenticationResponse> The response entity containing the access token for the registered user.
@@ -65,7 +58,6 @@ public class AuthenticationController {
 
     /**
      * Authenticates a user.
-     * <p></p>
      *
      * @param request The AuthenticationRequest object containing the user's email and password.
      * @return ResponseEntity<AuthenticationResponse> The response entity containing the access token for the authenticated user.
@@ -80,14 +72,13 @@ public class AuthenticationController {
     @PostMapping("/login")
 
     public ResponseEntity<AuthenticationResponse> login(
-           final @RequestBody AuthenticationRequest request
+            final @RequestBody AuthenticationRequest request
     ) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
     /**
      * Retrieves the details of the authenticated user.
-     * <p></p>
      *
      * @return A string representing the details of the authenticated user.
      */

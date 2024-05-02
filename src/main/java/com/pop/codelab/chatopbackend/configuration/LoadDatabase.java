@@ -19,13 +19,10 @@ import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 
-import static com.pop.codelab.chatopbackend.business.user.Role.ADMIN;
-import static com.pop.codelab.chatopbackend.business.user.Role.MANAGER;
-import static com.pop.codelab.chatopbackend.business.user.Role.USER;
+import static com.pop.codelab.chatopbackend.business.user.Role.*;
 
 /**
  * The LoadDatabase class is responsible for setting up the initial data in the application database.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -42,11 +39,11 @@ public class LoadDatabase {
      * The userRepository variable is an instance of the UserRepository interface,
      * which extends the JpaRepository interface.
      * It provides methods to perform CRUD operations on User entities in the database.
-     * <p></p>
+     * <p>
      * It has the following methods:
      * - findByEmail(String email): Returns an Optional<User> object that represents
      * the user with the given email address, if it exists.
-     * <p></p>
+     * <p>
      * Usage examples:
      * - Optional<User> user = userRepository.findByEmail("example@example.com");
      */
@@ -67,12 +64,11 @@ public class LoadDatabase {
     /**
      * The commandLineRunner method is a bean that implements the CommandLineRunner interface.
      * It is responsible for executing the specified logic when the application starts.
-     * <p></p>
+     * <p>
      * Performs setup actions.
-     * <p></p>
+     * <p>
      * Once the Spring application context is fully loaded and before it starts running methods to initialize data
      * are called
-     * <p></p>
      *
      * @param authenticationService the AuthenticationService instance used to create users
      * @param messageService        the MessageService instance used to create messages
@@ -98,7 +94,6 @@ public class LoadDatabase {
 
     /**
      * Creates three users - one ADMIN, one MANAGER, and one USER.
-     * <p></p>
      *
      * @param authenticationService the AuthenticationService instance used for user registration
      */
@@ -136,7 +131,6 @@ public class LoadDatabase {
 
     /**
      * Creates two messages from the admin user.
-     * <p></p>
      *
      * @param messageService The MessageService instance used to save the messages.
      */
@@ -165,7 +159,6 @@ public class LoadDatabase {
 
     /**
      * Creates rentals in the system.
-     * <p></p>
      *
      * @param rentalService the RentalService instance used to save the rentals
      * @param imageService  the ImageService instance used to save the rental pictures

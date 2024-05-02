@@ -14,10 +14,10 @@ import static com.pop.codelab.chatopbackend.business.user.Permission.*;
 /**
  * The Role enum represents the roles that can be assigned to a user.
  * Roles are used to determine the permissions and privileges of a user within the system.
- * <p></p>
+ * <p>
  * Each role has a set of permissions associated with it.
  * The permissions are defined in the Permission enum.
- * <p></p>
+ * <p>
  * The Role enum provides getters for the permissions and privileges associated with each role.
  *
  * @author Pignon Pierre-Olivier
@@ -52,7 +52,7 @@ public enum Role {
     /**
      * The permissions variable represents the set of permissions associated with a user role.
      * Permissions are defined in the Permission enum and are used to determine the user's privileges within the system.
-     *
+     * <p>
      * <p>
      * The getters and methods provided by the Role enum allow retrieval and manipulation of the permissions.
      * </p>

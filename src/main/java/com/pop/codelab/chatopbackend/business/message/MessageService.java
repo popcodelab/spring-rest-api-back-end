@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 /**
  * The MessageService class provides CRUD (Create, Read, Update, Delete) operations for
  * working with MessageDto objects.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -29,7 +28,6 @@ public class MessageService implements CrudService<MessageDto> {
      * The logger variable is used for logging messages and events in the MessageService class.
      * It is an instance of the Logger class from the SLF4J (Simple Logging Facade for Java) framework,
      * initialized with the logger name of the MessageService class.
-     * <p></p>
      *
      * @see Logger
      * @see LoggerFactory
@@ -39,9 +37,8 @@ public class MessageService implements CrudService<MessageDto> {
     /**
      * The messageRepository variable refers to an instance of the MessageRepository interface.
      * It is used in the MessageService class to perform CRUD operations on Message objects.
-     * <p></p>
+     * <p>
      * The MessageRepository interface extends the JpaRepository interface, which provides basic CRUD operations for the Message entity.
-     * <p></p>
      *
      * @see JpaRepository
      * @see Message
@@ -52,7 +49,6 @@ public class MessageService implements CrudService<MessageDto> {
      * The modelMapper variable is an instance of the ModelMapper class.
      * It is used for mapping objects between different models.
      * Here between Dto and Entity and vice versa
-     * <p></p>
      *
      * @see ModelMapper
      */

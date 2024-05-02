@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
  * The MessageController class is a controller class that handles HTTP requests related to messages.
  * It extends the CrudController class and provides implementations for CRUD operations on MessageDto objects.
  *
- * <p></p>
- *
  * @version 1.0
  * @see CrudController
  * @see MessageDto
@@ -31,7 +29,6 @@ public class MessageController extends CrudController<MessageDto> {
 
     /**
      * The MessageController class is responsible for handling HTTP requests related to messages.
-     * <p></p>
      *
      * @param messageService the service used for message-related operations
      */
@@ -41,7 +38,6 @@ public class MessageController extends CrudController<MessageDto> {
 
     /**
      * Saves the MessageDto object to the server.
-     * <p></p>
      *
      * @param messageDto the object to be saved
      * @return a ResponseEntity containing the created MessageCreationResponse object and the HTTP status code CREATED (201)
@@ -57,12 +53,11 @@ public class MessageController extends CrudController<MessageDto> {
     })
     public ResponseEntity<?> save(final @RequestBody MessageDto messageDto) {
         super.save(messageDto);
-        return ResponseEntity.status  (HttpStatus.CREATED).body("{\"message\": \"Message sent with success\"}");
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"message\": \"Message sent with success\"}");
     }
 
     /**
      * Retrieves all messages from the server.
-     * <p></p>
      *
      * @return a ResponseEntity containing the list of messages and the HTTP status code OK (200)
      */
@@ -83,7 +78,6 @@ public class MessageController extends CrudController<MessageDto> {
 
     /**
      * Retrieves a message by its ID.
-     * <p></p>
      *
      * @param id the ID of the message to be retrieved
      * @return a ResponseEntity containing the message if found, or null and the HTTP status code NOT_FOUND (404) if not found

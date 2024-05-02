@@ -22,7 +22,7 @@ import java.util.UUID;
 public class ImageService {
 
     /**
-     * Instance du logger
+     * Instance du logger.
      */
     private static final Logger logger = LoggerFactory.getLogger(ImageService.class);
 

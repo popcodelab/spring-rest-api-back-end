@@ -6,6 +6,7 @@
 - Get the files from Github
 - Database setup
 - Run the back-end
+- Swagger
 - Technologies
 - Authors
 
@@ -23,6 +24,12 @@ Git clone:
 Go inside folder:
 
 > cd spring-rest-api
+ 
+>mvn install
+
+It generates :
+- The jar file into the folder: `target`
+- The javadoc into the folder: `doc\javadoc`
 
 ## Database setup
 
@@ -30,23 +37,33 @@ Assuming that you have MySQL server installed on your machine.
 Enter the following commands :
 
 >cd .\src\main\resources\sql
+
+Providing your MySQL username:
+
 > mysql -u `username` -p < chatop-db.sql
 
-Provide your MySQL username and your password will be asked at the prompt.
+Provide your MySQL password at the prompt.
 
-To check if the database has been properly created type these commands:
+The database has been created.
+
+To check, type this command:
 > mysql -u `username` -p
 
 At the prompt, enter your password.
 Once you ll be connected to the server, type this command:
 > SHOW DATABASES; 
 
-the chatop database should appear in the result.
+the Châtop database should appear in the result.
 
 ## Run the back-end
 
 > java -jar target/chatop-backend-1.0.0-SNAPSHOT.jar
-Install dependencies:
+
+## Swagger
+
+Make sure that the back-end is running, then you can browse this address :
+
+http://localhost:8080/swagger-ui/index.html
 
 ## Technologies
 
@@ -81,6 +98,10 @@ Install dependencies:
 <tr style="border: none"> 
   <td style="border: none">SQL (MySQL 8.3)</td>
   <td style="border: none"><img style="height: 100px;" src="https://raw.github.com/popcodelab/svg-icons/main/mysql.svg?sanitize=true" alt="SQL (MySQL)"></td>
+</tr>
+<tr style="border: none"> 
+  <td style="width:15em;word-wrap:break-word; border: none">Springdoc Openapi v2.5.0 & Swagger UI</td>
+  <td style="border: none"><img style="height: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/swagger.svg?sanitize=true" alt="Springdoc Openapi v2.5.0 & Swagger UI"></td>
 </tr>
 </table>
 

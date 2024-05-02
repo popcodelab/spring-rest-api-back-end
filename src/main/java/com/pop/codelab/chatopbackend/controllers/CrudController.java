@@ -4,12 +4,7 @@ import com.pop.codelab.chatopbackend.dto.BaseDto;
 import com.pop.codelab.chatopbackend.service.CrudService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -31,10 +26,8 @@ public abstract class CrudController<T extends BaseDto> {
     /**
      * The CrudController class is a generic controller that provides CRUD (Create, Read, Update, Delete) operations
      * for working with DTOs (Data Transfer Objects) that extend the BaseDto class.
-     * <p></p>
      *
-     * @param <T>         the type of DTO that extends BaseDto
-     *                    <p></p>
+     * @param <T> the type of DTO that extends BaseDto
      * @param crudService an instance of CrudService that provides the CRUD operations for the DTOs
      */
     public CrudController(final CrudService<T> crudService) {
@@ -43,7 +36,6 @@ public abstract class CrudController<T extends BaseDto> {
 
     /**
      * Retrieves all objects from the server.
-     * <p></p>
      *
      * @return a ResponseEntity containing the list of objects and the HTTP status code OK (200)
      */
@@ -54,7 +46,6 @@ public abstract class CrudController<T extends BaseDto> {
 
     /**
      * Retrieves an object by its ID.
-     * <p></p>
      *
      * @param id the ID of the object to be retrieved
      * @return a ResponseEntity containing the object if found, or null and the HTTP status code NOT_FOUND (404) if not found
@@ -75,7 +66,6 @@ public abstract class CrudController<T extends BaseDto> {
 
     /**
      * Saves the object to the server.
-     * <p></p>
      *
      * @param entity the object to be saved
      * @return a ResponseEntity containing the saved object and the HTTP status code CREATED (201)
@@ -87,7 +77,6 @@ public abstract class CrudController<T extends BaseDto> {
 
     /**
      * Deletes an object with the specified ID.
-     * <p></p>
      *
      * @param id the ID of the object to be deleted
      * @return a ResponseEntity with the status code and message indicating the result of the deletion
@@ -108,7 +97,6 @@ public abstract class CrudController<T extends BaseDto> {
 
     /**
      * Updates an object with the specified ID.
-     * <p></p>
      *
      * @param id     the ID of the object to be updated
      * @param entity the updated object

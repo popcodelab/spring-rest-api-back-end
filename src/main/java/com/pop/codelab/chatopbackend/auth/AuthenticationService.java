@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * The AuthenticationService class is responsible for user authentication and registration.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -28,7 +27,6 @@ public class AuthenticationService {
     /**
      * The userRepository variable is an instance of the UserRepository interface.
      * It is used in the AuthenticationService class to perform CRUD operations on User entities.
-     * <p></p>
      *
      * @see UserRepository
      * @see AuthenticationService
@@ -53,7 +51,7 @@ public class AuthenticationService {
     /**
      * The authenticationManager variable represents an instance of the AuthenticationManager interface,
      * which is responsible for authenticating a user.
-     * <p></p>
+     * <p>
      * The authenticationManager is used by the AuthenticationService class to authenticate user requests.
      *
      * @see AuthenticationService#authenticate(AuthenticationRequest)
@@ -74,7 +72,6 @@ public class AuthenticationService {
 
     /**
      * Registers a new user.
-     * <p></p>
      *
      * @param userCreationDto The UserCreationDto object representing the user information to be registered.
      * @return AuthenticationResponse The response object containing the access token for the registered user.
@@ -92,7 +89,6 @@ public class AuthenticationService {
 
     /**
      * Authenticates a user.
-     * <p></p>
      *
      * @param request The AuthenticationRequest object containing the user's email and password.
      * @return The response object containing the access token for the authenticated user.
