@@ -23,12 +23,12 @@ Git clone:
 
 Go inside folder:
 
-> cd spring-rest-api
+> cd spring-rest-api-back-end
  
 >mvn install
 
 It generates :
-- The jar file into the folder: `target`
+- The jar (`chatop-backend-1.0.0-SNAPSHOT.jar`) file into the folder: `target`
 - The javadoc into the folder: `doc\javadoc`
 
 ## Database setup
@@ -36,11 +36,9 @@ It generates :
 Assuming that you have MySQL server installed on your machine.
 Enter the following commands :
 
->cd .\src\main\resources\sql
-
 Providing your MySQL username:
 
-> mysql -u `username` -p < chatop-db.sql
+> mysql -u `username` -p < .\src\main\resources\sql\chatop-db.sql
 
 Provide your MySQL password at the prompt.
 
@@ -57,7 +55,9 @@ the Châtop database should appear in the result.
 
 ## Run the back-end
 
-> java -jar target/chatop-backend-1.0.0-SNAPSHOT.jar
+
+
+> java -jar .\target\chatop-backend-1.0.0-SNAPSHOT.jar
 
 ## Swagger
 
