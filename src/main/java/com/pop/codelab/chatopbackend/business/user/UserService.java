@@ -50,7 +50,7 @@ public class UserService implements CrudService<UserDto> {
 
     /**
      * The logger variable is used to log information and debug messages.
-     * <p></p>
+     * <p>
      * It is a static final variable of type Logger and is initialized using the LoggerFactory.getLogger() method.
      * The LoggerFactory is a utility class for obtaining Logger instances.
      *
@@ -72,20 +72,22 @@ public class UserService implements CrudService<UserDto> {
 
     /**
      * The modelMapper variable represents an instance of the ModelMapper class.
-     * <p></p>
+     * <p>
      * The ModelMapper class is a library that simplifies the mapping between different objects.
      * It provides a simple and flexible API for mapping one object to another, based on the defined mappings and rules.
-     * ModelMapper uses a combination of reflection, conversion, and convention-based strategies to perform the mapping.
-     * <p></p>
+     * ModelMapper uses a combination of reflection, conversion, and convention-based strategies to perform the mapping.</p>
+     * <p>
      * The modelMapper variable is annotated with @Autowired, indicating that it is automatically injected by Spring dependency injection.
-     * <p></p>
+     * </p>
+     * <p>
      * This variable is defined in the UserService class, which is a service class responsible for managing user-related operations.
      * The UserService class contains methods for CRUD operations on user entities, such as finding all users, finding a user by ID, saving a user, updating a user, and deleting a
-     * user.
+     * user.</p>
      * The modelMapper variable is used in these methods to map between User and UserDto objects.
-     * <p></p>
+     * <p>
      * The ModelMapper class provides various methods for mapping objects, such as map(), mapList(), and mapType().
      * These methods can be used to map between different object types, collections, and generic types.
+     * </p>
      *
      * @see com.pop.codelab.chatopbackend.service.UserService
      * @see com.pop.codelab.chatopbackend.dto.UserDto
@@ -100,7 +102,7 @@ public class UserService implements CrudService<UserDto> {
      * This method queries the UserRepository to get a list of all users.
      * If the list is empty, a ResourceNotFoundException is thrown.
      * Otherwise, the list of User objects is converted to a list of UserDto objects using the convertToDto method.
-     * <p></p>
+     * </p>
      *
      * @return A list of UserDto objects representing all users in the system.
      * @throws ResourceNotFoundException if no user is found.

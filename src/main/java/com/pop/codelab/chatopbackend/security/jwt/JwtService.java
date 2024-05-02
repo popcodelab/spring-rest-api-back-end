@@ -19,7 +19,6 @@ import java.util.function.Function;
  * The JwtService class is responsible for generating and validating JSON Web Tokens (JWT).
  * It provides methods for extracting claims from a token, generating a token based on user details,
  * and checking if a token is valid and not expired.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -59,7 +58,6 @@ public class JwtService {
 
     /**
      * Extracts the username from the provided token.
-     * <p></p>
      *
      * @param token the token containing the username
      * @return the extracted username
@@ -70,7 +68,6 @@ public class JwtService {
 
     /**
      * Extracts a claim from the given token using the provided claims resolver.
-     * <p></p>
      *
      * @param token          The token from which to extract the claim.
      * @param claimsResolver The resolver function that maps the extracted claims to the desired type.
@@ -84,12 +81,12 @@ public class JwtService {
 
     /**
      * Generates a token for a given user.
-     * <p></p>
      *
      * @param userDetails The UserDetails object representing the user information.
      * @return The generated token as a string.
      */
     public String generateToken(final UserDetails userDetails) {
+
         return generateToken(new HashMap<>(), userDetails);
     }
 
@@ -132,7 +129,6 @@ public class JwtService {
 
     /**
      * Checks if the given token is valid for the specified user details.
-     * <p></p>
      *
      * @param token       The token to be validated.
      * @param userDetails The user details against which the token should be validated.
@@ -147,7 +143,6 @@ public class JwtService {
 
     /**
      * Checks if the given token is expired.
-     * <p></p>
      *
      * @param token The token to check for expiration
      * @return true if the token is expired, false otherwise
@@ -158,7 +153,6 @@ public class JwtService {
 
     /**
      * Extracts the expiration date from the given token.
-     * <p></p>
      *
      * @param token the token from which to extract the expiration date
      * @return the expiration date extracted from the token

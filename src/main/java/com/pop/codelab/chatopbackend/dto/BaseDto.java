@@ -11,9 +11,8 @@ import java.time.LocalDate;
 
 /**
  * The BaseDto class is an abstract class that serves as the base for all DTO (Data Transfer Object) classes.
- * <p></p>
+ * <p>
  * It provides common properties such as id, createAt, and updatedAt that can be inherited by the child DTO classes.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0

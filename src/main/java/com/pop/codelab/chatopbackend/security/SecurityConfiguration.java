@@ -26,14 +26,12 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
  * - JwtAuthenticationFilter: A filter that validates and authenticates JWT (JSON Web Token) in the HTTP request.
  * - AuthenticationProvider: An authentication provider that authenticates user credentials.
  * - LogoutHandler: A logout handler that performs actions when a user logs out.
- * <p></p>
- *
- * @see JwtAuthenticationFilter
- * @see AuthenticationProvider
- * @see LogoutHandler
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
+ * @see JwtAuthenticationFilter
+ * @see AuthenticationProvider
+ * @see LogoutHandler
  */
 @Configuration
 @EnableWebSecurity
@@ -45,15 +43,15 @@ public class SecurityConfiguration {
      * The WHITE_LIST_URL variable represents a list of URLs that are allowed to bypass authentication
      * and authorization checks in the application.
      * These URLs are considered to be public and accessible to all users without any restrictions.
-     *<p></p>
+     * <p>
      * The URLs in the WHITE_LIST_URL variable are matched against the request path to determine
      * if the request should be allowed or not.
      * If the request path matches any of the URLs in the list, the request is allowed to proceed
      * without authentication or authorization checks.
-     *<p></p>
+     * <p>
      * The WHITE_LIST_URL variable is an array of strings, where each string represents a URL pattern.
      * Wildcard characters such as "*" can be used in the URL patterns to match multiple URLs.
-     *<p></p>
+     * <p>
      * Note:
      * The WHITE_LIST_URL variable is defined as a private static final field in the SecurityConfiguration class.
      * This variable is used to configure the security filters in the application and ensure that certain URLs
@@ -81,31 +79,32 @@ public class SecurityConfiguration {
 
     /**
      * The JwtAuthenticationFilter class is responsible for validating and authenticating JWT (JSON Web Token) in the HTTP request.
-     * <p></p>
+     * <p>
      * This filter checks if the request contains a valid JWT in the "Authorization" header and authenticates the user based on the token.
      * If the token is valid, the authenticated user is stored in the SecurityContextHolder for further request processing.
-     * If the token is not present or*/
+     * If the token is not present or
+     */
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     /**
      * The authenticationProvider variable represents an instance of the AuthenticationProvider interface.
-     * <p></p>
+     * <p>
      * This variable is used in the JwtAuthenticationFilter class to perform user authentication based on the provided token.
-     * It is responsible for*/
+     * It is responsible for
+     */
     private final AuthenticationProvider authenticationProvider;
 
     /**
      * The logoutHandler variable represents a handler responsible for handling logout functionality.
      * It is used in the SecurityConfiguration class for configuring the logout process.
-     * <p></p>
+     * <p>
      * This variable is marked as private final, indicating that it cannot be modified after initialization.
-     * <p></p>
+     * <p>
      * Please note that this variable does not have a specific type listed in the given code,
      * so the actual type and implementation details may not be provided here.
      * The logoutHandler should have methods and logic related to handling logout functionality.
-     * <p></p>
+     * <p>
      * Refer to the containing class SecurityConfiguration for more information on how this variable is used.
-     * <p></p>
      *
      * @see SecurityConfiguration
      */
@@ -126,6 +125,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(WHITE_LIST_URL)
+                                .permitAll()
+                                .requestMatchers("/images/**") // Assuming the URLs for serving images start with "/api/images/"
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()

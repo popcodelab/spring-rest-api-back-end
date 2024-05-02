@@ -19,11 +19,9 @@ import lombok.experimental.SuperBuilder;
  * It extends the BaseEntity class, which provides common fields such as id, createdAt, and updatedAt.
  * The Message class is annotated with @Data, @SuperBuilder, @NoArgsConstructor, @AllArgsConstructor, @Entity, and @Table,
  * indicating that it is an entity class with automatic generated getters, setters, builders, and database mappings.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
- * <p></p>
  * @see BaseEntity
  */
 @EqualsAndHashCode(callSuper = true)
@@ -37,10 +35,9 @@ public class Message extends BaseEntity {
     /**
      * The message variable represents the content of a message.
      * Messages are entities in the system that can be created, modified, and deleted.
-     * <p></p>
+     * <p>
      * This variable is declared in the Message class, which extends the BaseEntity class.
      * The BaseEntity class provides common fields such as id, createdAt, and updatedAt.
-     * <p></p>
      *
      * @see Message
      * @see BaseEntity
@@ -53,7 +50,7 @@ public class Message extends BaseEntity {
      * indicating that it represents a many-to-one relationship with the {@link User} entity.
      * The {@link JoinColumn} annotation specifies the name of the foreign key column in the database table,
      * which is "user_id" in this case.
-     * <p></p>
+     * <p>
      * Example usage:
      * <pre>{@code
      * User user = message.getUser();
@@ -74,7 +71,7 @@ public class Message extends BaseEntity {
      * indicating that it represents a many-to-one relationship with the {@link Rental} entity.
      * The {@link JoinColumn} annotation specifies the name of the foreign key column in the database table,
      * which is "rental_id" in this case.
-     * <p></p>
+     * <p>
      * <p>
      * Example usage:
      * <pre>{@code

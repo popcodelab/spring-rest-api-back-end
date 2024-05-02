@@ -1,10 +1,6 @@
 package com.pop.codelab.chatopbackend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,10 +13,9 @@ import java.time.LocalDate;
 /**
  * BaseEntity is an abstract class that serves as a base class for entities in the system.
  * It provides common fields such as id, createdAt, and updatedAt for all entities.
- * <p></p>
+ * <p>
  * This class is annotated with @MappedSuperclass, indicating that it is not a persistent entity itself
  * but can be used as a superclass for other entities.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -58,7 +53,7 @@ public abstract class BaseEntity {
      * In this case, it is set to "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
      * which sets the default value for this column to the current timestamp and automatically updates it
      * whenever the entity is updated.
-     * <p></p>
+     * <p>
      * Example usage:
      * <pre>{@code
      * LocalDate createAt = entity.getCreateAt();
@@ -79,7 +74,7 @@ public abstract class BaseEntity {
      * In this case, it is set to "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
      * which sets the default value for this column to the current timestamp and automatically updates it
      * whenever the entity is updated.
-     * <p></p>
+     * <p>
      * Example usage:
      * <?java
      * LocalDate updatedAt = entity.getUpdatedAt();

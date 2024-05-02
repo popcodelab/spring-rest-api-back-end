@@ -9,18 +9,18 @@ import java.math.BigDecimal;
 
 /**
  * Rental is a class representing a rental in the system.
- *
- * <p>It is annotated with @Data, @Builder, @NoArgsConstructor, and @AllArgsConstructor,
+ * <p>
+ * It is annotated with @Data, @Builder, @NoArgsConstructor, and @AllArgsConstructor,
  * which are Lombok annotations that generate basic boilerplate code such as getters, setters,
  * constructors, and toString methods.</p>
- *
- * <p>It is also annotated with @Entity, which marks it as a JPA entity, and @Table, which specifies the name
+ * <p>
+ * It is also annotated with @Entity, which marks it as a JPA entity, and @Table, which specifies the name
  * of the database table that this entity is mapped to.</p>
- *
- * <p>Rental extends BaseEntity, which is an abstract class that serves as a base class for entities in the system.
+ * <p>
+ * Rental extends BaseEntity, which is an abstract class that serves as a base class for entities in the system.
  * It provides common fields such as id, createdAt, and updatedAt for all entities. BaseEntity is also annotated with
- *
- * <p>Rental has the following fields:</p>
+ * <p>
+ * Rental has the following fields:</p>
  * <ul>
  *     <li>name: A String representing the name of the rental.</li>
  *     <li>surface: A BigDecimal representing the surface area of the rental. It is marked as @Column(nullable = false),
@@ -45,7 +45,6 @@ public class Rental extends BaseEntity {
      * The `name` variable represents the name of a rental in the system.
      * It is a field of type String, and it is marked as private, indicating that it can only be accessed within the class.
      * This variable is used to store the name of the rental.
-     * <p></p>
      */
     private String name;
 
@@ -85,7 +84,7 @@ public class Rental extends BaseEntity {
 
     /**
      * The user variable represents the owner of a rental.
-     * <p></p>
+     * <p>
      * This variable is a foreign key field of the Rental class, which represents a rental entity in the system.
      * It is of type User and is used to associate a specific user as the owner of the rental.
      * The user field is mapped to the "owner_id" column in the "rentals" table using the @ManyToOne and @JoinColumn annotations.

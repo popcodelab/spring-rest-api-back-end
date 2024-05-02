@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Configuration class for configuring the ModelMapper bean.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -14,7 +13,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ModelMapperConfiguration {
     /**
-     * Returns a new instance of {@code ModelMapper}.
+     * Creates and configures a ModelMapper bean.
+     *
+     * @return The ModelMapper instance.
      */
     @Bean
     public ModelMapper modelMapper() {

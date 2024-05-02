@@ -2,6 +2,9 @@ HELP.md
 # Logs
 logs/
 
+#doc
+doc/
+
 #downloaded images folder
 src/main/resources/static/images/
 

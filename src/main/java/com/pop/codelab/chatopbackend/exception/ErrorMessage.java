@@ -4,7 +4,6 @@ import java.util.Date;
 
 /**
  * The ErrorMessage class represents an error message with status code, timestamp, message, and description.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -26,7 +25,6 @@ public class ErrorMessage {
      * <p>
      * This variable is a string that holds the message content of an error message.
      * </p>
-     * <p></p>
      *
      * @see ErrorMessage
      */
@@ -37,7 +35,6 @@ public class ErrorMessage {
      * <p>
      * It is a final variable that cannot be modified once initialized.
      * </p>
-     * <p></p>
      *
      * @see ErrorMessage
      */
@@ -45,7 +42,6 @@ public class ErrorMessage {
 
     /**
      * The ErrorMessage class represents an error message with status code, timestamp, message, and description.
-     * <p></p>
      *
      * @see ErrorMessage
      */
@@ -61,7 +57,6 @@ public class ErrorMessage {
 
     /**
      * Returns the status code of an error message.
-     * <p></p>
      *
      * @return the status code of an error message
      */
@@ -71,7 +66,6 @@ public class ErrorMessage {
 
     /**
      * Returns the timestamp of the error message.
-     * <p></p>
      *
      * @return the timestamp of the error message
      */
@@ -81,7 +75,6 @@ public class ErrorMessage {
 
     /**
      * Returns the message content of an error message.
-     * <p></p>
      *
      * @return the message content of an error message
      */
@@ -91,7 +84,6 @@ public class ErrorMessage {
 
     /**
      * Returns the description content of an error message.
-     * <p></p>
      *
      * @return the description content of an error message
      */
