@@ -19,7 +19,7 @@ It relies on Spring Boot and a MySQL database
 
 Git clone:
 
-> git clone https://github.com/popcodelab/spring-rest-api.git
+> git clone https://github.com/popcodelab/spring-rest-api-back-end.git
 
 Go inside folder:
 
