@@ -26,7 +26,6 @@ import java.util.Optional;
 /**
  * The RentalService class provides CRUD operations for managing RentalDto objects.
  * It implements the CrudService interface, which defines common CRUD operations.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -54,11 +53,11 @@ public class RentalService implements CrudService<RentalDto> {
     /**
      * The rentalRepository variable is an instance of the RentalRepository interface.
      * It is used to interact with the database and perform CRUD (Create, Read, Update, Delete) operations on Rental entities.
-     *
-     * <p>The RentalRepository interface extends the JpaRepository interface, which provides basic CRUD operations for managing Rental entities in the database.
+     * <p>
+     * The RentalRepository interface extends the JpaRepository interface, which provides basic CRUD operations for managing Rental entities in the database.
      * This interface inherits all the methods from the JpaRepository interface, such as save(), findById(), findAll(), delete(), etc.</p>
-     *
-     * <p>The rentalRepository variable is declared as private and final, meaning it cannot be reassigned to a different object once initialized.
+     * <p>
+     * The rentalRepository variable is declared as private and final, meaning it cannot be reassigned to a different object once initialized.
      * It is typically injected into the RentalService class, allowing the class to access and manipulate Rental entities
      * stored in the database through the methods provided by the RentalRepository interface.</p>
      *
@@ -70,11 +69,10 @@ public class RentalService implements CrudService<RentalDto> {
 
     /**
      * The imageService variable represents an instance of the ImageService class.
-     *
-     * <p>The ImageService class provides functionality for saving, retrieving, and deleting image files.
+     * <p>
+     * The ImageService class provides functionality for saving, retrieving, and deleting image files.
      * It is used to handle image-related operations in the application.</p>
-     * <p></p>
-     * <p>The ImageService class has the following methods:</p>
+     * The ImageService class has the following methods:</p>
      * <ul>
      *     <li>saveImageToStorage(String uploadDirectory, MultipartFile imageFile): Saves the given image file to the specified upload directory.</li>
      *     <li>getImage(String imageDirectory, String imageName): Retrieves the image with the specified imageDirectory and imageName.</li>
@@ -89,8 +87,8 @@ public class RentalService implements CrudService<RentalDto> {
      * The ModelMapper class is used for mapping objects from one type to another.
      * It is a powerful and flexible Java bean mapping library that simplifies the mapping process between two objects.
      * Here, used to map Dto and Entity.
-     *
-     * <p>The ModelMapper class is autowired to enable dependency injection, making it easy to use within a Spring application.</p>
+     * <p>
+     * The ModelMapper class is autowired to enable dependency injection, making it easy to use within a Spring application.</p>
      *
      * @see RentalService
      * @see RentalDto
@@ -103,7 +101,6 @@ public class RentalService implements CrudService<RentalDto> {
 
     /**
      * Retrieves all rentals from the repository.
-     * <p></p>
      *
      * @return a list of RentalDto objects representing all rentals
      * @throws ResourceNotFoundException if no rentals are found
@@ -116,9 +113,9 @@ public class RentalService implements CrudService<RentalDto> {
             throw new ResourceNotFoundException("No rental found");
         }
         List<OneRentalResponseDto> oneRentalResponseDtoList = new ArrayList<>();
-        for(Rental rental : rentals){
+        for (Rental rental : rentals) {
             OneRentalResponseDto oneRentalResponseDto = modelMapper.map(rental, OneRentalResponseDto.class);
-            if (rental.getPicture()!=null && !rental.getPicture().isEmpty()){
+            if (rental.getPicture() != null && !rental.getPicture().isEmpty()) {
                 String fileName = String.valueOf(Path.of(uploadDirectory).resolve(rental.getPicture()));
                 if (Files.exists(Path.of(fileName))) {
                     logger.debug("Retrieving the image : {} ", fileName);
@@ -128,7 +125,7 @@ public class RentalService implements CrudService<RentalDto> {
                             .toUriString();
                     oneRentalResponseDto.setPicture(imageUrl);
                     logger.debug("Image will be served at  = {}", imageUrl);
-                }else{
+                } else {
                     logger.warn("The image {} has not been found !", fileName);
                 }
             }
@@ -141,7 +138,6 @@ public class RentalService implements CrudService<RentalDto> {
 
     /**
      * Retrieves a RentalDto object by its ID.
-     * <p></p>
      *
      * @param id the ID of the rental to be retrieved
      * @return an Optional object containing a RentalDto if found, or an empty Optional if not found
@@ -163,7 +159,7 @@ public class RentalService implements CrudService<RentalDto> {
                     logger.info("Retrieving the image : {} ", fileName);
                     MockMultipartFile file = new MockMultipartFile(optionalRental.get().getPicture(), new FileInputStream(fileName));
                     rentalDto.setPicture(file);
-                }else{
+                } else {
                     logger.warn("The image {} has not been found !", fileName);
                 }
 
@@ -176,10 +172,8 @@ public class RentalService implements CrudService<RentalDto> {
     }
 
 
-
     /**
      * Saves the given RentalDto object to the repository.
-     * <p></p>
      *
      * @param rentalDto the DTO object to be saved
      * @return the saved RentalDto object
@@ -209,7 +203,6 @@ public class RentalService implements CrudService<RentalDto> {
 
     /**
      * Deletes a rental object by its ID.
-     * <p></p>
      *
      * @param id the ID of the rental object to be deleted
      */
@@ -220,7 +213,6 @@ public class RentalService implements CrudService<RentalDto> {
 
     /**
      * Updates a RentalDto object with the specified ID.
-     * <p></p>
      *
      * @param id        the ID of the object to be updated
      * @param rentalDto the updated object
@@ -232,16 +224,5 @@ public class RentalService implements CrudService<RentalDto> {
             final RentalDto rentalDto) {
         var updatedRental = rentalRepository.save(modelMapper.map(rentalDto, Rental.class));
         return modelMapper.map(updatedRental, RentalDto.class);
-    }
-
-    /**
-     * Converts a Rental object to a RentalDto object.
-     * <p></p>
-     *
-     * @param rental the Rental object to be converted
-     * @return the RentalDto object representing the converted Rental object
-     */
-    private RentalDto convertToDto(final Rental rental) {
-        return modelMapper.map(rental, RentalDto.class);
     }
 }

@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 /**
  * The AuthenticationRequest class represents the request object used for authentication.
  * It contains the user's email and password.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0

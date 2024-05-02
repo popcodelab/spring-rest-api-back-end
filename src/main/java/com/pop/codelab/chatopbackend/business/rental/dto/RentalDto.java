@@ -26,7 +26,6 @@ public class RentalDto extends BaseDto {
      * The private variable `name` is a String type and represents the name of a rental.
      * It is used to store the name of the rental represented by a RentalDto object.
      * This variable is encapsulated and can only be accessed within the class that declares it.
-     * <p></p>
      *
      * @see RentalDto
      */
@@ -36,7 +35,6 @@ public class RentalDto extends BaseDto {
      * The surface variable is a private BigDecimal type and represents the surface area of a rental property.
      * It is used to store the surface area of the rental property represented by a RentalDto object.
      * This variable is encapsulated and can only be accessed within the class that declares it.
-     * <p></p>
      */
     private BigDecimal surface;
 
@@ -58,7 +56,6 @@ public class RentalDto extends BaseDto {
      * The private variable `description` is a String type and represents the description of a rental.
      * It is used to store the description of the rental represented by a RentalDto object.
      * This variable is encapsulated and can only be accessed within the class that declares it.
-     * <p></p>
      *
      * @see RentalDto
      */
@@ -68,7 +65,6 @@ public class RentalDto extends BaseDto {
      * The user variable represents a UserDto object.
      * It is used to store the user data, including the user's name, email, role, and other properties.
      * This variable is of type UserDto and is part of the RentalDto class, which is a Data Transfer Object (DTO) for Rental entities.
-     * <p></p>
      *
      * @see UserDto
      * @see RentalDto

@@ -76,7 +76,7 @@
             <version>0.12.5</version>
         </dependency>
 
-        <!-- Swagger 3 -->
+        <!-- springdoc-openapi & Swagger UI -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -103,10 +103,6 @@
             <artifactId>spring-test</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>-->
-<!--        </dependency>-->
     </dependencies>
     <build>
         <plugins>
@@ -116,7 +112,20 @@
                 <configuration>
                     <source>17</source>
                     <encoding>UTF-8</encoding>
+                    <reportOutputDirectory>${project.basedir}/doc/javadoc</reportOutputDirectory>
+                    <additionalJOption>-Xdoclint:none</additionalJOption>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.basedir}/doc/javadoc</destDir>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -133,12 +142,4 @@
 
         </plugins>
     </build>
-<!--    <distributionManagement>-->
-<!--        <repository>-->
-<!--            <id>local-repo</id>-->
-<!--            <name>Local Repository</name>-->
-<!--            <url>file://${project.build.directory}/local-repo</url>-->
-<!--        </repository>-->
-<!--    </distributionManagement>-->
-
 </project>

@@ -112,7 +112,7 @@ public class RentalController extends CrudController<RentalDto> {
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
-    private String getImageToServeUrl(final RentalDto rentalDto){
+    private String getImageToServeUrl(final RentalDto rentalDto) {
         String imageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/images/")
                 .path(rentalDto.getPicture().getName())
@@ -147,7 +147,7 @@ public class RentalController extends CrudController<RentalDto> {
             throw new RuntimeException("The Rental DTO has not been saved !");
         }
         logger.debug("Saved : {}", savedRentalDto);
-        return ResponseEntity.status  (HttpStatus.CREATED).body("{\"message\": \"Rental created !\"}");
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"message\": \"Rental created !\"}");
     }
 
     /**

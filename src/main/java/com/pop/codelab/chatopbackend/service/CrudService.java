@@ -9,10 +9,8 @@ import java.util.Optional;
 /**
  * The CrudService interface provides CRUD (Create, Read, Update, Delete) operations for
  * working with DTOs (Data Transfer Objects) that extends the BaseDto class.
- * <p></p>
  *
  * @param <T> the type of DTO that extends BaseDto
- *            <p></p>
  * @author Pignon Pierre-Olivier
  * @version 1.0
  */

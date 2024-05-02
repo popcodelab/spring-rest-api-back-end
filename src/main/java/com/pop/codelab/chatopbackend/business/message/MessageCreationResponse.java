@@ -9,7 +9,6 @@ import lombok.experimental.SuperBuilder;
 /**
  * Data Transfer Object
  * Represents the created message.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -23,8 +22,8 @@ public class MessageCreationResponse {
 
     /**
      * The message variable represents a string message.
-     *
-     * <p>MessageCreationResponse is a Data Transfer Object class that represents the created message.
+     * <p>
+     * MessageCreationResponse is a Data Transfer Object class that represents the created message.
      * It contains a private String field named "message".</p>
      */
     @JsonProperty("message")

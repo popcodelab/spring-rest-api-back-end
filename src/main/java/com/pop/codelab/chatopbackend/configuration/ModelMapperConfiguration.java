@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Configuration class for configuring the ModelMapper bean.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0

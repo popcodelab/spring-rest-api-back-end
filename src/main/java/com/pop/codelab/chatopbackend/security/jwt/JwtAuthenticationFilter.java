@@ -18,21 +18,21 @@ import java.io.IOException;
 
 /**
  * JwtAuthenticationFilter is a filter that is responsible for validating and authenticating JWT (JSON Web Token) in the HTTP request.
- * <p></p>
+ * <p>
  * This filter checks if the request contains a valid JWT in the "Authorization" header and authenticates the user based on the token.
  * If the token is valid, the authenticated user is stored in the SecurityContextHolder for further request processing.
  * If the token is not present or not valid, the filter allows the request to proceed without authentication.
- * <p></p>
+ * <p>
  * This filter extends the OncePerRequestFilter class, ensuring that it is executed only once per request.
- * <p></p>
+ * <p>
  * Usage:
  * Include this filter in the SecurityConfiguration class by adding it using the addFilterBefore method.
  * This ensures that the filter is executed before the UsernamePasswordAuthenticationFilter.
- * <p></p>
+ * <p>
  * Constructor:
  * - JwtAuthenticationFilter(JwtService jwtService, UserDetailsService userDetailsService)
  * Constructs a new JwtAuthenticationFilter with the provided JwtService and UserDetailsService implementations.
- * <p></p>
+ * <p>
  * Methods:
  * - doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
  * Implements the authentication logic. Performs the following steps:
@@ -59,11 +59,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     /**
      * The UserDetailsService variable represents a service that is responsible for fetching user details.
      * It is used in the JwtAuthenticationFilter class.
-     * <p></p>
+     * <p>
      * This variable is declared as private and final to ensure immutability after initialization.
-     * <p></p>
+     * <p>
      * Please refer to the documentation of the JwtAuthenticationFilter class for more information on how this variable is utilized.
-     * <p></p>
      *
      * @see JwtAuthenticationFilter
      */

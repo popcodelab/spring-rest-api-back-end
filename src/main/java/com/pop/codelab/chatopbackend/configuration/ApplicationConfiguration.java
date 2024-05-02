@@ -17,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * The {@code ApplicationConfiguration} class is a configuration class for the application.
  * It provides the necessary beans for user authentication and authorization.
  * This class is annotated with {@code @Configuration} to indicate that it contains bean definitions.
- * <p></p>
  *
  * @author Pignon Pierre-Olivier
  * @version 1.0
@@ -46,10 +45,9 @@ public class ApplicationConfiguration {
 
     /**
      * Returns an instance of {@code AuthenticationProvider}.
-     * <p></p>
+     * <p>
      * The {@code UserDetailsService} is retrieved from the {@code userDetailsService()} method,
      * which retrieves the user details for authentication based on the provided username.
-     * <p></p>
      *
      * @return an instance of {@code AuthenticationProvider} configured with the necessary dependencies
      */
@@ -64,7 +62,6 @@ public class ApplicationConfiguration {
     /**
      * Returns an instance of {@code AuthenticationManager}.
      * The {@code AuthenticationManager} is obtained from the provided {@code AuthenticationConfiguration}.
-     * <p></p>
      *
      * @param config the {@code AuthenticationConfiguration} containing the {@code AuthenticationManager} implementation
      * @return an instance of {@code AuthenticationManager} configured with the necessary dependencies
@@ -80,7 +77,6 @@ public class ApplicationConfiguration {
      * The BCryptPasswordEncoder is a password hashing function that uses the Blowfish cipher and is based
      * on the bcrypt algorithm.
      * It is used to encode passwords for secure storage and authentication purposes.
-     * <p></p>
      *
      * @return a new instance of BCryptPasswordEncoder
      */

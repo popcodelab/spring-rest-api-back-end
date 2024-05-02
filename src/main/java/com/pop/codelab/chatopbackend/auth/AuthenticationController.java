@@ -39,7 +39,6 @@ public class AuthenticationController {
 
     /**
      * Registers a new user.
-     * <p></p>
      *
      * @param userDto The UserCreationDto object representing the user information to be registered.
      * @return ResponseEntity<AuthenticationResponse> The response entity containing the access token for the registered user.
@@ -59,7 +58,6 @@ public class AuthenticationController {
 
     /**
      * Authenticates a user.
-     * <p></p>
      *
      * @param request The AuthenticationRequest object containing the user's email and password.
      * @return ResponseEntity<AuthenticationResponse> The response entity containing the access token for the authenticated user.
@@ -74,14 +72,13 @@ public class AuthenticationController {
     @PostMapping("/login")
 
     public ResponseEntity<AuthenticationResponse> login(
-           final @RequestBody AuthenticationRequest request
+            final @RequestBody AuthenticationRequest request
     ) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
     /**
      * Retrieves the details of the authenticated user.
-     * <p></p>
      *
      * @return A string representing the details of the authenticated user.
      */
