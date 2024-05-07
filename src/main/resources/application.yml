@@ -19,8 +19,9 @@ logging:
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"  # Console log pattern
     file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"     # File log pattern
-  #config: classpath:logback-spring.xml  # Optional: path to an external Logback configuration file
+  #config: classpath:logback-spring.xml # Optional: path to an external Logback configuration file
 
+#TODO remove password before to deliver
 
 spring:
   datasource:

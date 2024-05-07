@@ -168,12 +168,13 @@ public class JwtService {
      * @return the extracted claims
      */
     private Claims extractAllClaims(final String token) {
-        return Jwts
+        Claims claims =  Jwts
                 .parser()
                 .setSigningKey(getSignInKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+        return claims;
     }
 
     /**

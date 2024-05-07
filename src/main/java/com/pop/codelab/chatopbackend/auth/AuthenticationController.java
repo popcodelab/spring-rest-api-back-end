@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/auth")
+// TODO Remove CrossOrigin anotation in ALL controllers
 @CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
 @RequiredArgsConstructor
 public class AuthenticationController {

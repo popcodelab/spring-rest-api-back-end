@@ -1,0 +1,43 @@
+package com.pop.codelab.chatopbackend.configuration;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+
+/**
+ * This class provides the configuration for Swagger documentation.
+ */
+@Configuration
+public class SwaggerConfiguration {
+
+    /**
+     * This method returns an instance of OpenAPI.
+     *
+     * @return The OpenAPI instance
+     */
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI().addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
+                .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
+                .info(new Info().title("Châtop REST API")
+                        .description("Documentation de l'API Rest de l'application Châtop.")
+                        .version("1.0").contact(new Contact().name("Pignon Pierre-Olivier")));
+    }
+
+    /**
+     * Creates a security scheme for API key authentication.
+     *
+     * @return The created security scheme
+     */
+    private SecurityScheme createAPIKeyScheme() {
+        return new SecurityScheme().type(SecurityScheme.Type.HTTP)
+                .bearerFormat("JWT")
+                .scheme("bearer");
+    }
+}
