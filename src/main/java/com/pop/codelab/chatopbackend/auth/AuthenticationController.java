@@ -62,6 +62,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody final UserCreationDto userDto
     ) {
+        authenticationService.register(userDto);
         return ResponseEntity.ok().build();
     }
 
