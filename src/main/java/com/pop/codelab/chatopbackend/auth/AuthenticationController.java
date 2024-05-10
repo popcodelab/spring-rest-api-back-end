@@ -2,17 +2,22 @@ package com.pop.codelab.chatopbackend.auth;
 
 import com.pop.codelab.chatopbackend.business.rental.RentalController;
 import com.pop.codelab.chatopbackend.business.user.dto.UserCreationDto;
+import com.pop.codelab.chatopbackend.business.user.dto.UserDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -31,12 +36,15 @@ public class AuthenticationController {
      * The logger is initialized using the LoggerFactory.getLogger method and the class name RentalController.class.
      * The logger should be private, static, and final to ensure thread-safety and avoid any unintended modifications.
      */
-    private static final Logger logger = LoggerFactory.getLogger(RentalController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
     /**
      * The AuthenticationService class provides methods for user authentication and registration.
      */
     private final AuthenticationService authenticationService;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     /**
      * Registers a new user.
@@ -94,9 +102,13 @@ public class AuthenticationController {
     })
     public ResponseEntity<?> getUserDetails() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // Get principal (authenticated user)
-        String username = authentication.getName(); // Retrieve username
-        logger.debug("Logger in user Id is : {} ", username);
-        return ResponseEntity.ok().build();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//        MeDto meDto = modelMapper.map(userDetails, MeDto.class);
+//        logger.debug("Logger in user Id is : {} user name = {} , email = {}",meDto.getId(), meDto.getName(),meDto.getEmail() );
+//        return new ResponseEntity<>(meDto, HttpStatus.FOUND);
+
+        UserDto userDto = modelMapper.map(userDetails, UserDto.class);
+        logger.debug("Logger in user Id is : {} user name = {} , email = {}",userDto.getId(), userDto.getName(),userDto.getEmail() );
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 }
