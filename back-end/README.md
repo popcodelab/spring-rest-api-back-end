@@ -3,8 +3,9 @@
 ## Table of contents
 
 - Description
-- Get the files from Github
+- Get the files from GitHub
 - Database setup
+- JWT
 - Run the back-end
 - Swagger
 - Javadoc
@@ -39,7 +40,7 @@ Enter the following commands :
 
 Providing your MySQL username:
 
-> mysql -u `username` -p < .\src\main\resources\sql\chatop-db.sql
+> mysql -u `username` -p .\src\main\resources\sql\chatop-db.sql
 
 Provide your MySQL password at the prompt.
 
@@ -53,6 +54,14 @@ Once you ll be connected to the server, type this command:
 > SHOW DATABASES; 
 
 the Châtop database should appear in the result.
+
+## JWT
+
+The secret key is not provided. Open the application.yml file in the src\main\resources folder.
+
+Replace the ${APP_SECRET_KEY} by your environment variable or your own string "key".
+
+<img src="file://./src/main/resources/static/images/readme/jwt_env_var.png" alt="application.yml" width="300"/>
 
 ## Run the back-end
 
