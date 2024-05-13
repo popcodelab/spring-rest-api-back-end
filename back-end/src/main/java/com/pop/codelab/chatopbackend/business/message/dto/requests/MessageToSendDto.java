@@ -26,8 +26,8 @@ public class MessageToSendDto {
      * The variable is annotated with @NotNull, indicating that it cannot be null.
      */
     @NotNull
-    @JsonProperty("user_id")
-    private Long userId;
+   // @JsonProperty("user_id")
+    private Long user_id;
 
     /**
      * The rental_id variable represents the ID of a rental.
