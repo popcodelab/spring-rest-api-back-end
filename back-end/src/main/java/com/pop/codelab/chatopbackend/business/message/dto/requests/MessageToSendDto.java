@@ -1,6 +1,5 @@
 package com.pop.codelab.chatopbackend.business.message.dto.requests;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -26,7 +25,6 @@ public class MessageToSendDto {
      * The variable is annotated with @NotNull, indicating that it cannot be null.
      */
     @NotNull
-   // @JsonProperty("user_id")
     private Long user_id;
 
     /**
@@ -35,7 +33,5 @@ public class MessageToSendDto {
      * The variable is annotated with @NotNull, indicating that it cannot be null.
      */
     @NotNull
-//    @JsonProperty("rental_id")
-//    private Long rentalId;
     private Long rental_id;
 }
