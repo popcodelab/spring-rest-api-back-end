@@ -15,20 +15,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 /**
- * SecurityConfiguration is a class that configures the security settings for the application.
- * It is annotated with @Configuration to indicate that it is a configuration class.
- * <p>
- * It uses Spring Security annotations such as @EnableWebSecurity, @EnableMethodSecurity, and @Bean to configure the security filters and providers.
- * </p>
- * The class has the following dependencies:
- * - JwtAuthenticationFilter: A filter that validates and authenticates JWT (JSON Web Token) in the HTTP request.
- * - AuthenticationProvider: An authentication provider that authenticates user credentials.
- * - LogoutHandler: A logout handler that performs actions when a user logs out.
- *
- * @author Pignon Pierre-Olivier
- * @version 1.0
- * @see JwtAuthenticationFilter
- * @see LogoutHandler
+ * The SecurityConfiguration class is responsible for configuring the security filters for the application.
+ * It is annotated with @Configuration, @EnableWebSecurity, @RequiredArgsConstructor, and @EnableMethodSecurity.
+ * It also defines the OpenAPI information for Swagger UI using the @OpenAPIDefinition annotation.
  */
 @Configuration
 @EnableWebSecurity

@@ -7,6 +7,7 @@
 - Database setup
 - Run the back-end
 - Swagger
+- Javadoc
 - Technologies
 - Authors
 
@@ -67,6 +68,16 @@ Then run the back-end
 Make sure that the back-end is running, then you can browse this address :
 
 http://localhost:3001/api/swagger-ui/index.htm
+
+## Javadoc
+
+To generate the javadoc use the following command :
+
+> mvn javadoc:javadoc
+
+The documentation will be generated into \doc\javadoc folder.
+
+Browse index.html file.
 
 ## Technologies
 
