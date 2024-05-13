@@ -61,7 +61,7 @@ The secret key is not provided. Open the application.yml file in the src\main\re
 
 Replace the ${APP_SECRET_KEY} by your environment variable or your own string "key".
 
-<img src="file://src/main/resources/static/images/readme/jwt_env_var.png" alt="application.yml" width="300"/>
+![application.yml](src/main/resources/static/images/readme/jwt_env_var.png)
 
 ## Run the back-end
 
