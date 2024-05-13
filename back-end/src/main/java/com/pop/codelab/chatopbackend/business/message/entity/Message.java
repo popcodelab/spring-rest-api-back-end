@@ -44,7 +44,7 @@ public class Message extends BaseEntity {
      * The user_id variable represents the ID of a user in the system.
      * It is used to uniquely identify a user entity and perform operations related to that user.
      */
-    @Column(nullable = false, name = "user_id")
-    private Long userId;
+    @Column(nullable = false)
+    private Long user_id;
 
 }
