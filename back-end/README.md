@@ -76,7 +76,7 @@ Then run the back-end
 
 Make sure that the back-end is running, then you can browse this address :
 
-http://localhost:3001/api/swagger-ui/index.htm
+http://localhost:3001/api/swagger-ui/index.html
 
 ## Javadoc
 
