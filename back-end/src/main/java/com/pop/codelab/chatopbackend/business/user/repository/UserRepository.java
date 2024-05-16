@@ -1,4 +1,4 @@
-package com.pop.codelab.chatopbackend.business.user;
+package com.pop.codelab.chatopbackend.business.user.repository;
 
 import com.pop.codelab.chatopbackend.business.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

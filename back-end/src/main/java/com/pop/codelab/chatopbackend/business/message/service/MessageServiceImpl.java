@@ -1,12 +1,13 @@
 package com.pop.codelab.chatopbackend.business.message.service;
 
-import com.pop.codelab.chatopbackend.business.message.MessageRepository;
+import com.pop.codelab.chatopbackend.business.message.repository.MessageRepository;
 import com.pop.codelab.chatopbackend.business.message.dto.requests.MessageToSendDto;
 import com.pop.codelab.chatopbackend.business.message.entity.Message;
 import com.pop.codelab.chatopbackend.common.responses.MessageDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

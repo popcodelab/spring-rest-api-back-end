@@ -1,9 +1,10 @@
-package com.pop.codelab.chatopbackend.auth;
+package com.pop.codelab.chatopbackend.auth.controller;
 
 import com.pop.codelab.chatopbackend.auth.dto.requests.AuthenticateDto;
 import com.pop.codelab.chatopbackend.auth.dto.requests.RegisterDto;
 import com.pop.codelab.chatopbackend.auth.dto.responses.JwtDto;
 import com.pop.codelab.chatopbackend.auth.dto.responses.UserDto;
+import com.pop.codelab.chatopbackend.auth.service.AuthenticationService;
 import com.pop.codelab.chatopbackend.auth.service.AuthenticationServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -28,7 +30,8 @@ public class AuthenticationController {
     /**
      * The AuthenticationServiceImpl class provides methods for user authentication and registration.
      */
-    private final AuthenticationServiceImpl authenticationService;
+    @Autowired
+    private AuthenticationService authenticationService;
 
     /**
      * Registers a new user.

@@ -2,7 +2,7 @@ package com.pop.codelab.chatopbackend.security;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.pop.codelab.chatopbackend.business.user.UserRepository;
+import com.pop.codelab.chatopbackend.business.user.repository.UserRepository;
 import com.pop.codelab.chatopbackend.business.user.entity.User;
 import com.pop.codelab.chatopbackend.services.JwtService;
 import jakarta.servlet.FilterChain;

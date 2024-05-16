@@ -1,4 +1,4 @@
-package com.pop.codelab.chatopbackend.business.message;
+package com.pop.codelab.chatopbackend.business.message.controller;
 
 import com.pop.codelab.chatopbackend.business.message.dto.requests.MessageToSendDto;
 import com.pop.codelab.chatopbackend.business.message.service.MessageService;

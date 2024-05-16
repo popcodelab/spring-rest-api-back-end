@@ -1,4 +1,4 @@
-package com.pop.codelab.chatopbackend.business.rental;
+package com.pop.codelab.chatopbackend.business.rental.repository;
 
 import com.pop.codelab.chatopbackend.business.rental.entity.Rental;
 import org.springframework.data.jpa.repository.JpaRepository;
