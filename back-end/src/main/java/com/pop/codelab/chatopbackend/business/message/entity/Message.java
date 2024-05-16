@@ -35,14 +35,14 @@ public class Message extends BaseEntity {
      * The rental_id variable represents the ID of a rental in the system.
      * It is used to uniquely identify a rental entity and perform operations related to that rental.
      */
-    @Column(nullable = false)
-    private Long rental_id;
+    @Column(nullable = false, name = "rental_id")
+    private Long rentalId;
 
     /**
      * The user_id variable represents the ID of a user in the system.
      * It is used to uniquely identify a user entity and perform operations related to that user.
      */
-    @Column(nullable = false)
-    private Long user_id;
+    @Column(nullable = false, name = "user_id")
+    private Long userId;
 
 }

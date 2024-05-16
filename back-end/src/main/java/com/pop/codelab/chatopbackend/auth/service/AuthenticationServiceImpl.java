@@ -4,7 +4,7 @@ import com.pop.codelab.chatopbackend.auth.dto.requests.AuthenticateDto;
 import com.pop.codelab.chatopbackend.auth.dto.requests.RegisterDto;
 import com.pop.codelab.chatopbackend.auth.dto.responses.JwtDto;
 import com.pop.codelab.chatopbackend.auth.dto.responses.UserDto;
-import com.pop.codelab.chatopbackend.business.user.UserRepository;
+import com.pop.codelab.chatopbackend.business.user.repository.UserRepository;
 import com.pop.codelab.chatopbackend.business.user.entity.User;
 import com.pop.codelab.chatopbackend.services.JwtService;
 import lombok.RequiredArgsConstructor;

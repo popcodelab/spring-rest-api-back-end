@@ -1,7 +1,7 @@
 package com.pop.codelab.chatopbackend.business.user.service;
 
 import com.pop.codelab.chatopbackend.auth.dto.responses.UserDto;
-import com.pop.codelab.chatopbackend.business.user.UserRepository;
+import com.pop.codelab.chatopbackend.business.user.repository.UserRepository;
 import com.pop.codelab.chatopbackend.business.user.entity.User;
 import com.pop.codelab.chatopbackend.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;

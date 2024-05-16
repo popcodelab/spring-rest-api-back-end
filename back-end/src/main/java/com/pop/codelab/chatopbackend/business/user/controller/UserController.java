@@ -1,4 +1,4 @@
-package com.pop.codelab.chatopbackend.business.user;
+package com.pop.codelab.chatopbackend.business.user.controller;
 
 import com.pop.codelab.chatopbackend.auth.dto.responses.UserDto;
 import com.pop.codelab.chatopbackend.business.user.service.UserServiceImpl;

@@ -1,6 +1,7 @@
 package com.pop.codelab.chatopbackend.configuration;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +20,11 @@ public class ModelMapperConfiguration {
      */
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+        // This line has been added to solve the issue with Message entity and DTO
+        // The destination property com.pop.codelab.chatopbackend.common.entity.BaseEntity.setId() matches multiple
+        // source property hierarchies (userId & RentalId => user_id & rental_id)
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return modelMapper;
     }
 }

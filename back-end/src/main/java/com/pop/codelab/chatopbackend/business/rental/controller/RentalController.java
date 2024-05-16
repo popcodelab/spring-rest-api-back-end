@@ -1,4 +1,4 @@
-package com.pop.codelab.chatopbackend.business.rental;
+package com.pop.codelab.chatopbackend.business.rental.controller;
 
 import com.pop.codelab.chatopbackend.business.rental.dto.requests.RentalCreationDto;
 import com.pop.codelab.chatopbackend.business.rental.dto.requests.RentalUpdateDto;

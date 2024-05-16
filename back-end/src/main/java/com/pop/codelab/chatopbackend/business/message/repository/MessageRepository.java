@@ -1,4 +1,4 @@
-package com.pop.codelab.chatopbackend.business.message;
+package com.pop.codelab.chatopbackend.business.message.repository;
 
 import com.pop.codelab.chatopbackend.business.message.entity.Message;
 import org.springframework.data.jpa.repository.JpaRepository;

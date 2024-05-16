@@ -1,6 +1,6 @@
 package com.pop.codelab.chatopbackend.business.rental.service;
 
-import com.pop.codelab.chatopbackend.business.rental.RentalRepository;
+import com.pop.codelab.chatopbackend.business.rental.repository.RentalRepository;
 import com.pop.codelab.chatopbackend.business.rental.dto.requests.RentalCreationDto;
 import com.pop.codelab.chatopbackend.business.rental.dto.requests.RentalUpdateDto;
 import com.pop.codelab.chatopbackend.business.rental.dto.responses.AllRentalsDto;
